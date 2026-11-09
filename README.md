@@ -43,10 +43,14 @@ Supabase anahtarları yoksa uygulama **demo modunda** çalışır; veriler
 
 Bu repo bir monorepo. Vercel'de iki kurulumdan biri kullanılabilir:
 
-1. **Root Directory = `web`** (önerilen): Framework **Vite**, build komutu
-   `npm run build`, output `dist`.
+1. **Root Directory = `web`** (önerilen): Framework **Vite**, Install Command
+   `npm install --include=dev`, Build Command `npm run build`, Output
+   Directory `dist`.
 2. **Root Directory = repo kökü**: kök `vercel.json` otomatik olarak `web/`
    içine girip kurar ve build eder, çıktıyı `web/dist` olarak yayınlar.
+
+Vercel panelinde **Root Directory** yanlışlıkla `mobile` seçiliyse build
+`Missing script: build` hatası verir; `web` veya boş (repo kökü) olmalı.
 
 SPA yönlendirmesi (`/giris`, `/panel` vb.) için `vercel.json` dosyalarında
 `/index.html` rewrite'ı hazır.
