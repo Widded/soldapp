@@ -31,7 +31,7 @@ export function Onboarding({ onComplete }: Props) {
   return (
     <div className="onboarding">
       <div className="onboarding-hero animate">
-        <div className="onboarding-kicker">kaç saat?</div>
+        <div className="onboarding-kicker">SOLD.</div>
         <h1 className="onboarding-title">
           Bir fiyat etiketi, <em>kaç saatlik</em> hayatın?
         </h1>

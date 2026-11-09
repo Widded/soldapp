@@ -105,7 +105,7 @@ export function SettingsView({ settings, onSave, onReset, onToast }: Props) {
       </div>
 
       <div className="premium-card">
-        <h3>Kaç Saat? Premium</h3>
+        <h3>SOLD Premium</h3>
         <p>
           Sınırsız karar, haftalık rapor, ana ekran widget'ı ve detaylı analiz.
           Şu an yapım aşamasında.

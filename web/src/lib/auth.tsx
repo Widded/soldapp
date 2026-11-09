@@ -10,8 +10,8 @@ import {
 import type { Session, User } from '@supabase/supabase-js';
 import { supabase } from './supabase';
 
-const DEMO_USER_KEY = 'kacsaat.demoUser';
-const DEMO_EMAIL = 'demo@kacsaat.app';
+const DEMO_USER_KEY = 'sold.demoUser';
+const DEMO_EMAIL = 'demo@sold.app';
 
 type DemoUser = { email: string };
 

@@ -1,4 +1,4 @@
--- kaç saat? — Supabase şeması
+-- SOLD — Supabase şeması
 -- Supabase Dashboard > SQL Editor içinde çalıştırın.
 
 create extension if not exists "pgcrypto";

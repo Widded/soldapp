@@ -67,7 +67,7 @@ export default function LoginScreen() {
       >
         <View style={styles.top}>
           <Text style={styles.brand}>
-            kaç saat<Text style={styles.brandAccent}>?</Text>
+            SOLD<Text style={styles.brandAccent}>.</Text>
           </Text>
           <Mono style={styles.eyebrow}>GİRİŞ / KAYIT</Mono>
           <Text style={styles.title}>

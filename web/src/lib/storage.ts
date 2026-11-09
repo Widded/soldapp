@@ -1,7 +1,7 @@
 import type { Decision, Settings } from '../types';
 
-const SETTINGS_KEY = 'kacsaat.settings.v1';
-const DECISIONS_KEY = 'kacsaat.decisions.v1';
+const SETTINGS_KEY = 'sold.settings.v1';
+const DECISIONS_KEY = 'sold.decisions.v1';
 
 export function loadSettings(): Settings | null {
   try {

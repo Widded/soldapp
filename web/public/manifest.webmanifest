@@ -1,11 +1,11 @@
 {
-  "name": "Kaç Saat?",
-  "short_name": "Kaç Saat?",
+  "name": "SOLD",
+  "short_name": "SOLD",
   "description": "Fiyatları ömrüne çevir. Bir şeyin kaç saatlik emeğine mal olduğunu gör.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0b",
-  "theme_color": "#0a0a0b",
+  "background_color": "#050505",
+  "theme_color": "#050505",
   "lang": "tr",
   "icons": [
     {

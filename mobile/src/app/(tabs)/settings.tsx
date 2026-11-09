@@ -175,7 +175,7 @@ export default function SettingsScreen() {
         <GhostButton label="Çıkış yap" onPress={logout} />
       </View>
 
-      <Text style={styles.footer}>kaç saat? · v0.1.0</Text>
+      <Text style={styles.footer}>SOLD · v0.1.0</Text>
     </Screen>
   );
 }

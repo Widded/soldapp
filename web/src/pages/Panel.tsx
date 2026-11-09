@@ -51,7 +51,7 @@ export function Panel() {
     <div className="panel-page">
       <header className="panel-header">
         <Link to="/" className="site-logo">
-          kaç saat<span>?</span>
+          SOLD<span>.</span>
         </Link>
         <div className="panel-header-right">
           <span className="panel-email">{email}</span>

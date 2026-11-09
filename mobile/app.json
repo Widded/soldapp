@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "kaç saat?",
-    "slug": "kac-saat",
+    "name": "SOLD",
+    "slug": "sold",
     "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "kacsaat",
+    "scheme": "sold",
     "userInterfaceStyle": "dark",
     "ios": {
       "icon": "./assets/expo.icon"

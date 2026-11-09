@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Decision, Settings } from './types';
 
-const SETTINGS_KEY = 'kacsaat.settings.v1';
-const DECISIONS_KEY = 'kacsaat.decisions.v1';
+const SETTINGS_KEY = 'sold.settings.v1';
+const DECISIONS_KEY = 'sold.decisions.v1';
 
 export async function loadSettings(): Promise<Settings | null> {
   try {

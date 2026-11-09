@@ -1,4 +1,4 @@
-# kaç saat? — web
+# SOLD — web
 
 One-page tanıtım + giriş/kayıt + kullanıcı paneli.
 

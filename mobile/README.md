@@ -1,4 +1,4 @@
-# kaç saat? — mobil
+# SOLD — mobil
 
 Expo (SDK 58) + Expo Router ile yapılmış iOS / Android / web uygulaması.
 

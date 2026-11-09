@@ -1,7 +1,11 @@
-# kaç saat?
+# SOLD
 
 Fiyatları ömrüne çeviren mikro uygulama. Maaşını ve çalışma düzenini gir; her
 fiyat etiketinin kaç saatlik emeğine mal olduğunu gör.
+
+**SOLD**, “harcadığın para, sattığın zamandır” fikrinden gelir. Bir fiyat
+etiketini saat/dakika cinsinden emeğe çevirir; karar listesi, bekleme süresi ve
+“kurtardığın saat” takibiyle birlikte.
 
 ## Yapı
 

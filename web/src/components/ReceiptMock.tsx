@@ -3,7 +3,7 @@ export function ReceiptMock() {
     <div className="receipt-wrap">
       <div className="receipt">
         <div className="receipt-head">
-          <span className="receipt-brand">KAÇ SAAT?</span>
+          <span className="receipt-brand">SOLD.</span>
           <span className="receipt-no">FİŞ NO. 0042</span>
         </div>
 
@@ -37,7 +37,7 @@ export function ReceiptMock() {
         </div>
 
         <div className="receipt-barcode" />
-        <div className="receipt-foot">kaçsaat.app</div>
+        <div className="receipt-foot">sold.app</div>
       </div>
 
       <div className="receipt-stamp">DEĞER Mİ?</div>

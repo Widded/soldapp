@@ -6,7 +6,7 @@ export function SiteFooter() {
       <div className="footer-inner">
         <div className="footer-brand">
           <div className="site-logo">
-            kaç saat<span>?</span>
+            SOLD<span>.</span>
           </div>
           <p>Fiyatları ömrüne çevir. Az tüket, çok yaşa.</p>
         </div>
@@ -27,14 +27,14 @@ export function SiteFooter() {
           <div>
             <h4>Destek</h4>
             <a href="#sss">SSS</a>
-            <a href="mailto:destek@kacsaat.app">destek@kacsaat.app</a>
+            <a href="mailto:destek@sold.app">destek@sold.app</a>
             <a href="#">Gizlilik</a>
           </div>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <span>© 2026 kaç saat? Tüm hakları saklıdır.</span>
+        <span>© 2026 SOLD. Tüm hakları saklıdır.</span>
         <span>İstanbul'da yapıldı.</span>
       </div>
     </footer>

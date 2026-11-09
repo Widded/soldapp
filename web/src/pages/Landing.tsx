@@ -178,7 +178,7 @@ export function Landing() {
             </div>
             <div>
               <strong>1</strong>
-              <span>soru: kaç saat?</span>
+              <span>soru: kaç saatlik?</span>
             </div>
             <div>
               <strong>0 ₺</strong>

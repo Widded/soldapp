@@ -79,7 +79,7 @@ export function Calculator({
 
   const share = async () => {
     if (numericPrice <= 0) return;
-    const text = `${name.trim() || 'Bu'} ${formatTL(numericPrice)} = ${duration} emeğim. Değer mi? — kaç saat?`;
+    const text = `${name.trim() || 'Bu'} ${formatTL(numericPrice)} = ${duration} emeğim. Değer mi? — SOLD`;
     try {
       if (navigator.share) {
         await navigator.share({ text });

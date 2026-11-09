@@ -12,7 +12,7 @@ export function SiteNav() {
     <header className="site-nav">
       <div className="site-nav-inner">
         <Link to="/" className="site-logo" onClick={close}>
-          kaç saat<span>?</span>
+          SOLD<span>.</span>
         </Link>
 
         <nav className={open ? 'site-links open' : 'site-links'}>

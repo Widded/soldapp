@@ -46,7 +46,7 @@ export function Header({ right }: { right?: ReactNode }) {
     <View style={styles.header}>
       <View style={styles.headerCopy}>
         <Text style={styles.brand}>
-          kaç saat<Text style={styles.brandAccent}>?</Text>
+          SOLD<Text style={styles.brandAccent}>.</Text>
         </Text>
         <Text style={styles.tagline}>FİYATLARI ÖMRÜNE ÇEVİR</Text>
       </View>

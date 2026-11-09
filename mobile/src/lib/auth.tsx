@@ -12,8 +12,8 @@ import type { Session, User } from '@supabase/supabase-js';
 import { supabase } from './supabase';
 import type { DemoUser } from './types';
 
-const DEMO_KEY = 'kacsaat.demoUser.v1';
-const DEMO_EMAIL = 'demo@kacsaat.app';
+const DEMO_KEY = 'sold.demoUser.v1';
+const DEMO_EMAIL = 'demo@sold.app';
 
 type AuthUser = User | DemoUser;
 
