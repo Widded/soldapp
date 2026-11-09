@@ -139,12 +139,12 @@ const styles = StyleSheet.create({
     height: 62,
     borderRadius: 21,
     borderWidth: 1,
-    borderColor: 'rgba(176, 228, 204, 0.12)',
+    borderColor: 'rgba(255, 255, 255, 0.09)',
     overflow: 'hidden',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 5,
-    backgroundColor: 'rgba(16, 32, 26, 0.72)',
+    backgroundColor: 'rgba(16, 16, 16, 0.72)',
     ...Platform.select({
       android: {
         elevation: 18,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(9, 20, 19, 0.25)',
+    backgroundColor: 'rgba(5, 5, 5, 0.25)',
   },
   item: {
     flex: 1,

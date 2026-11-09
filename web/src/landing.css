@@ -1,30 +1,30 @@
 /* ============================================================
-   SOLD — dark green product site
-   Color Hunt paleti: #091413 · #285A48 · #408A71 · #B0E4CC
-   Zemin #091413, yüzeyler orman yeşili, aksiyon zümrüt,
-   metin ve zaman nane. Mor/cam/parlama yok.
+   SOLD — monochrome product site
+   Siyah tonları: #050505 · #111111 · #1C1C1C · #EDEDED
+   Zemin siyah, yüzeyler grafit, metin kemik beyazı.
+   Renk yalnızca durum (hata) için kullanılır.
    ============================================================ */
 
 :root {
-  --bg: #091413;
-  --bg-2: #060f0d;
-  --surface: #10201a;
-  --surface-2: #142a22;
-  --card: #10201a;
-  --card-2: #142a22;
-  --border: rgba(176, 228, 204, 0.12);
-  --border-strong: rgba(176, 228, 204, 0.22);
-  --text: #b0e4cc;
-  --text-bright: #dcf4e7;
-  --muted: #7fa898;
-  --brass: #408a71;
-  --lime: #b0e4cc;
-  --accent: #b0e4cc;
-  --accent-ink: #091413;
-  --ink: #091413;
-  --moss: #285a48;
-  --clay: #7fa898;
-  --danger: #c47a5a;
+  --bg: #050505;
+  --bg-2: #000000;
+  --surface: #101010;
+  --surface-2: #181818;
+  --card: #101010;
+  --card-2: #181818;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --text: #ededed;
+  --text-bright: #ffffff;
+  --muted: #8f8f8f;
+  --brass: #ededed;
+  --lime: #ffffff;
+  --accent: #ffffff;
+  --accent-ink: #050505;
+  --ink: #050505;
+  --moss: #1c1c1c;
+  --clay: #8f8f8f;
+  --danger: #e07a5f;
   --radius: 18px;
   --radius-sm: 12px;
   --display: 'Space Grotesk Variable', -apple-system, BlinkMacSystemFont,
@@ -61,7 +61,7 @@ body::before {
   position: fixed;
   inset: 0;
   background-image: radial-gradient(
-    rgba(176, 228, 204, 0.05) 0.5px,
+    rgba(255, 255, 255, 0.05) 0.5px,
     transparent 0.5px
   );
   background-size: 5px 5px;
@@ -127,7 +127,7 @@ input {
 }
 
 .btn-primary:hover {
-  background: #4a9d81;
+  background: #d9d9d9;
 }
 
 .btn-primary:disabled {
@@ -156,7 +156,7 @@ input {
 
 .btn-danger {
   background: transparent;
-  border-color: rgba(196, 122, 90, 0.35);
+  border-color: rgba(224, 122, 95, 0.35);
   color: var(--danger);
 }
 
@@ -171,7 +171,7 @@ input {
 
 .btn-outline-dark {
   background: transparent;
-  border-color: rgba(9, 20, 19, 0.5);
+  border-color: rgba(5, 5, 5, 0.5);
   color: var(--ink);
 }
 
@@ -263,7 +263,7 @@ input {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(9, 20, 19, 0.92);
+  background: rgba(5, 5, 5, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -382,7 +382,7 @@ input {
 
 .hero-note {
   margin: 18px 0 0;
-  color: #5b7a6f;
+  color: #6e6e6e;
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.04em;
@@ -475,10 +475,10 @@ input {
 .hero-result {
   margin-top: 16px;
   padding: 16px;
-  border: 1px solid rgba(176, 228, 204, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   border-left: 3px solid var(--lime);
   border-radius: 14px;
-  background: rgba(176, 228, 204, 0.07);
+  background: rgba(255, 255, 255, 0.07);
   color: var(--text);
 }
 
@@ -595,7 +595,7 @@ input {
 }
 
 .compare-new {
-  border-color: rgba(176, 228, 204, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
   background: var(--surface);
   color: var(--text);
 }
@@ -664,13 +664,13 @@ input {
 
 .compare-card li span {
   flex-shrink: 0;
-  color: #5b7a6f;
+  color: #6e6e6e;
   font-family: var(--mono);
   font-size: 9.5px;
 }
 
 .compare-old li span {
-  color: rgba(196, 122, 90, 0.65);
+  color: rgba(224, 122, 95, 0.65);
 }
 
 .compare-new li {
@@ -679,7 +679,7 @@ input {
 }
 
 .compare-new li span {
-  color: rgba(176, 228, 204, 0.65);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 /* ---------- ledger ---------- */
@@ -1015,10 +1015,10 @@ input {
 .formula-total {
   margin-top: 10px;
   padding: 12px;
-  border: 1px solid rgba(176, 228, 204, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   border-left: 3px solid var(--lime);
   border-radius: 12px;
-  background: rgba(176, 228, 204, 0.07);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .formula-total span {
@@ -1033,7 +1033,7 @@ input {
 
 .formula-note {
   margin: 12px 0 0;
-  color: #5b7a6f;
+  color: #6e6e6e;
   font-family: var(--mono);
   font-size: 9.5px;
 }
@@ -1056,7 +1056,7 @@ input {
 }
 
 .price-premium {
-  border-color: rgba(64, 138, 113, 0.35);
+  border-color: rgba(255, 255, 255, 0.35);
   background: var(--surface);
 }
 
@@ -1290,7 +1290,7 @@ input {
 .footer-cols a {
   display: block;
   margin-bottom: 9px;
-  color: rgba(176, 228, 204, 0.75);
+  color: rgba(255, 255, 255, 0.75);
   font-size: 12.5px;
   text-decoration: none;
 }
@@ -1307,7 +1307,7 @@ input {
   margin: 44px auto 0;
   padding-top: 18px;
   border-top: 1px solid var(--border);
-  color: #5b7a6f;
+  color: #6e6e6e;
   font-family: var(--mono);
   font-size: 9.5px;
   letter-spacing: 0.04em;
@@ -1388,14 +1388,14 @@ input {
 }
 
 .form-error {
-  border: 1px solid rgba(196, 122, 90, 0.3);
-  background: rgba(196, 122, 90, 0.08);
-  color: #d99a80;
+  border: 1px solid rgba(224, 122, 95, 0.3);
+  background: rgba(224, 122, 95, 0.08);
+  color: #e5a48e;
 }
 
 .form-info {
-  border: 1px solid rgba(176, 228, 204, 0.3);
-  background: rgba(176, 228, 204, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.07);
   color: var(--lime);
 }
 
@@ -1453,7 +1453,7 @@ input {
   gap: 16px;
   height: 68px;
   padding: 0 24px;
-  background: rgba(9, 20, 19, 0.92);
+  background: rgba(5, 5, 5, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -1601,7 +1601,7 @@ input {
 }
 
 .premium-side {
-  border-color: rgba(64, 138, 113, 0.35);
+  border-color: rgba(255, 255, 255, 0.35);
   background: var(--surface);
 }
 
@@ -1680,7 +1680,7 @@ input {
 }
 
 .field input::placeholder {
-  color: #4a6b5f;
+  color: #555555;
 }
 
 .mini-field {
@@ -1761,7 +1761,7 @@ input {
   gap: 12px;
   margin-top: 16px;
   padding: 13px 15px;
-  border: 1px solid rgba(64, 138, 113, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 14px;
   background: var(--surface);
 }
@@ -1910,17 +1910,17 @@ input {
 }
 
 .badge-waiting {
-  background: rgba(176, 228, 204, 0.06);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--muted);
 }
 
 .badge-bought {
-  background: rgba(196, 122, 90, 0.12);
+  background: rgba(224, 122, 95, 0.12);
   color: var(--clay);
 }
 
 .badge-skipped {
-  background: rgba(176, 228, 204, 0.12);
+  background: rgba(255, 255, 255, 0.12);
   color: var(--lime);
 }
 
@@ -1947,7 +1947,7 @@ input {
 
 .premium-card {
   padding: 20px;
-  border: 1px solid rgba(64, 138, 113, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 18px;
   background: var(--surface);
 }
