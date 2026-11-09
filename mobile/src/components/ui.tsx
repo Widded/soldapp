@@ -1,0 +1,496 @@
+import { useState, type ReactNode } from 'react';
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  type KeyboardTypeOptions,
+  type StyleProp,
+  type TextStyle,
+  type ViewStyle,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { C, MONO } from '@/lib/theme';
+
+export function Screen({
+  children,
+  scroll = true,
+}: {
+  children: ReactNode;
+  scroll?: boolean;
+}) {
+  const inner = <View style={styles.screenInner}>{children}</View>;
+
+  return (
+    <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
+      {scroll ? (
+        <ScrollView
+          style={styles.scroll}
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          {inner}
+        </ScrollView>
+      ) : (
+        inner
+      )}
+    </SafeAreaView>
+  );
+}
+
+export function Header({ right }: { right?: ReactNode }) {
+  return (
+    <View style={styles.header}>
+      <View style={styles.headerCopy}>
+        <Text style={styles.brand}>
+          kaç saat<Text style={styles.brandAccent}>?</Text>
+        </Text>
+        <Text style={styles.tagline}>FİYATLARI ÖMRÜNE ÇEVİR</Text>
+      </View>
+      {right}
+    </View>
+  );
+}
+
+export function RatePill({ rate }: { rate: string }) {
+  return (
+    <View style={styles.ratePill}>
+      <Text style={styles.rateLabel}>SAATLİK DEĞERİN</Text>
+      <Text style={styles.rateValue}>{rate}</Text>
+    </View>
+  );
+}
+
+export function Mono({
+  children,
+  style,
+}: {
+  children: ReactNode;
+  style?: StyleProp<TextStyle>;
+}) {
+  return <Text style={[styles.mono, style]}>{children}</Text>;
+}
+
+export function Card({
+  children,
+  accent = false,
+  style,
+}: {
+  children: ReactNode;
+  accent?: boolean;
+  style?: StyleProp<ViewStyle>;
+}) {
+  return (
+    <View style={[styles.card, accent && styles.cardAccent, style]}>
+      {children}
+    </View>
+  );
+}
+
+export function PrimaryButton({
+  label,
+  onPress,
+  disabled = false,
+}: {
+  label: string;
+  onPress: () => void;
+  disabled?: boolean;
+}) {
+  return (
+    <Pressable
+      onPress={onPress}
+      disabled={disabled}
+      style={({ pressed }) => [
+        styles.primaryBtn,
+        disabled && styles.disabled,
+        pressed && styles.pressed,
+      ]}
+    >
+      <Text style={styles.primaryBtnText}>{label}</Text>
+    </Pressable>
+  );
+}
+
+export function GhostButton({
+  label,
+  onPress,
+  danger = false,
+}: {
+  label: string;
+  onPress: () => void;
+  danger?: boolean;
+}) {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.ghostBtn,
+        danger && styles.ghostBtnDanger,
+        pressed && styles.pressed,
+      ]}
+    >
+      <Text style={[styles.ghostBtnText, danger && styles.ghostBtnTextDanger]}>
+        {label}
+      </Text>
+    </Pressable>
+  );
+}
+
+export function Chip({
+  label,
+  active = false,
+  onPress,
+}: {
+  label: string;
+  active?: boolean;
+  onPress: () => void;
+}) {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.chip,
+        active && styles.chipActive,
+        pressed && styles.pressed,
+      ]}
+    >
+      <Text style={[styles.chipText, active && styles.chipTextActive]}>
+        {label}
+      </Text>
+    </Pressable>
+  );
+}
+
+export function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <View style={styles.stat}>
+      <Text style={styles.statLabel}>{label}</Text>
+      <Text style={styles.statValue}>{value}</Text>
+    </View>
+  );
+}
+
+export function Field({
+  label,
+  value,
+  onChangeText,
+  placeholder,
+  prefix,
+  suffix,
+  keyboardType = 'default',
+  size = 'lg',
+  multiline = false,
+  autoCapitalize,
+  secureTextEntry = false,
+}: {
+  label: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  placeholder?: string;
+  prefix?: string;
+  suffix?: string;
+  keyboardType?: KeyboardTypeOptions;
+  size?: 'lg' | 'md';
+  multiline?: boolean;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+  secureTextEntry?: boolean;
+}) {
+  const [focused, setFocused] = useState(false);
+
+  return (
+    <View style={styles.field}>
+      <Text style={styles.fieldLabel}>{label}</Text>
+      <View style={[styles.fieldRow, focused && styles.fieldRowFocus]}>
+        {prefix ? <Text style={styles.affix}>{prefix}</Text> : null}
+        <TextInput
+          style={[
+            styles.input,
+            size === 'md' && styles.inputMd,
+            multiline && styles.inputMultiline,
+          ]}
+          value={value}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          placeholderTextColor={C.faint}
+          keyboardType={keyboardType}
+          multiline={multiline}
+          autoCapitalize={autoCapitalize}
+          secureTextEntry={secureTextEntry}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+        />
+        {suffix ? <Text style={styles.affix}>{suffix}</Text> : null}
+      </View>
+    </View>
+  );
+}
+
+export function Empty({ children }: { children: ReactNode }) {
+  return (
+    <View style={styles.empty}>
+      <Text style={styles.emptyText}>{children}</Text>
+    </View>
+  );
+}
+
+export function Toast({ message }: { message: string | null }) {
+  if (!message) return null;
+  return (
+    <View style={styles.toast} pointerEvents="none">
+      <Text style={styles.toastText}>{message}</Text>
+    </View>
+  );
+}
+
+export function Divider() {
+  return <View style={styles.divider} />;
+}
+
+const styles = StyleSheet.create({
+  safe: {
+    flex: 1,
+    backgroundColor: C.bg,
+  },
+  scroll: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 40,
+  },
+  screenInner: {
+    paddingHorizontal: 18,
+    paddingTop: 14,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: 12,
+    marginBottom: 22,
+  },
+  headerCopy: {
+    flex: 1,
+  },
+  brand: {
+    color: C.text,
+    fontSize: 22,
+    fontWeight: '700',
+    letterSpacing: -1,
+  },
+  brandAccent: {
+    color: C.accent,
+  },
+  tagline: {
+    marginTop: 5,
+    color: C.muted,
+    fontFamily: MONO,
+    fontSize: 8,
+    letterSpacing: 1.2,
+  },
+  ratePill: {
+    borderWidth: 1,
+    borderColor: C.border,
+    borderTopWidth: 2,
+    borderTopColor: C.accent,
+    borderRadius: 2,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+    alignItems: 'flex-end',
+  },
+  rateLabel: {
+    color: C.muted,
+    fontFamily: MONO,
+    fontSize: 7,
+    letterSpacing: 0.8,
+  },
+  rateValue: {
+    marginTop: 2,
+    color: C.text,
+    fontFamily: MONO,
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  mono: {
+    color: C.muted,
+    fontFamily: MONO,
+    fontSize: 9,
+    letterSpacing: 1.2,
+  },
+  card: {
+    backgroundColor: C.card,
+    borderWidth: 1,
+    borderColor: C.border,
+    borderRadius: 4,
+    padding: 18,
+  },
+  cardAccent: {
+    borderTopWidth: 2,
+    borderTopColor: C.accent,
+  },
+  primaryBtn: {
+    backgroundColor: C.text,
+    borderRadius: 2,
+    paddingVertical: 15,
+    alignItems: 'center',
+  },
+  primaryBtnText: {
+    color: C.bg,
+    fontFamily: MONO,
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 1.2,
+  },
+  ghostBtn: {
+    borderWidth: 1,
+    borderColor: C.border,
+    borderRadius: 2,
+    paddingVertical: 14,
+    alignItems: 'center',
+  },
+  ghostBtnDanger: {
+    borderColor: '#3a1d1d',
+  },
+  ghostBtnText: {
+    color: C.text,
+    fontFamily: MONO,
+    fontSize: 10,
+    fontWeight: '600',
+    letterSpacing: 1,
+  },
+  ghostBtnTextDanger: {
+    color: C.danger,
+  },
+  disabled: {
+    opacity: 0.3,
+  },
+  pressed: {
+    opacity: 0.75,
+  },
+  chip: {
+    borderWidth: 1,
+    borderColor: C.border,
+    borderRadius: 2,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  chipActive: {
+    backgroundColor: C.accent,
+    borderColor: C.accent,
+  },
+  chipText: {
+    color: C.muted,
+    fontFamily: MONO,
+    fontSize: 9,
+    letterSpacing: 0.5,
+  },
+  chipTextActive: {
+    color: C.accentInk,
+    fontWeight: '700',
+  },
+  stat: {
+    flex: 1,
+    backgroundColor: C.card,
+    borderWidth: 1,
+    borderColor: C.border,
+    borderTopWidth: 2,
+    borderTopColor: C.accent,
+    borderRadius: 4,
+    padding: 14,
+  },
+  statLabel: {
+    color: C.muted,
+    fontFamily: MONO,
+    fontSize: 8,
+    letterSpacing: 0.7,
+    textTransform: 'uppercase',
+  },
+  statValue: {
+    marginTop: 6,
+    color: C.text,
+    fontSize: 19,
+    fontWeight: '700',
+    letterSpacing: -0.5,
+  },
+  field: {
+    marginBottom: 14,
+  },
+  fieldLabel: {
+    marginBottom: 7,
+    color: C.muted,
+    fontFamily: MONO,
+    fontSize: 9,
+    letterSpacing: 1,
+  },
+  fieldRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    borderBottomWidth: 1,
+    borderBottomColor: C.border,
+    paddingBottom: 8,
+  },
+  fieldRowFocus: {
+    borderBottomColor: C.accent,
+  },
+  affix: {
+    color: C.muted,
+    fontFamily: MONO,
+    fontSize: 11,
+  },
+  input: {
+    flex: 1,
+    padding: 0,
+    color: C.text,
+    fontSize: 26,
+    fontWeight: '700',
+    letterSpacing: -0.7,
+  },
+  inputMd: {
+    fontSize: 15,
+    fontWeight: '500',
+    letterSpacing: 0,
+  },
+  inputMultiline: {
+    minHeight: 60,
+    textAlignVertical: 'top',
+  },
+  empty: {
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: C.border,
+    borderRadius: 4,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+  },
+  emptyText: {
+    color: C.muted,
+    fontSize: 12,
+    lineHeight: 18,
+    textAlign: 'center',
+  },
+  toast: {
+    position: 'absolute',
+    left: 24,
+    right: 24,
+    bottom: 24,
+    alignItems: 'center',
+    backgroundColor: C.text,
+    borderRadius: 2,
+    paddingVertical: 12,
+  },
+  toastText: {
+    color: C.bg,
+    fontFamily: MONO,
+    fontSize: 9,
+    fontWeight: '700',
+    letterSpacing: 0.8,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: C.border,
+    marginVertical: 16,
+  },
+});

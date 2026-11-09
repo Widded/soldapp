@@ -2,7 +2,7 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { SiteNav } from '../components/SiteNav';
 import { SiteFooter } from '../components/SiteFooter';
-import { PhoneMock } from '../components/PhoneMock';
+import { ReceiptMock } from '../components/ReceiptMock';
 import { formatDuration, formatTL } from '../lib/format';
 
 const STEPS = [
@@ -141,10 +141,9 @@ export function Landing() {
 
       <main>
         <section className="hero">
-          <div className="hero-glow" />
           <div className="hero-inner">
             <div className="hero-copy">
-              <span className="eyebrow">Zaman = para</span>
+              <span className="eyebrow">01 / Zaman = para</span>
               <h1>
                 Bir fiyat etiketi, <em>kaç saatlik</em> hayatın?
               </h1>
@@ -166,7 +165,7 @@ export function Landing() {
             </div>
 
             <div className="hero-visual">
-              <PhoneMock />
+              <ReceiptMock />
             </div>
           </div>
         </section>
@@ -190,7 +189,7 @@ export function Landing() {
 
         <section id="nasil" className="section">
           <div className="section-head">
-            <span className="eyebrow">Nasıl çalışır</span>
+            <span className="eyebrow">02 / Nasıl çalışır</span>
             <h2>Üç adımda, gerçek maliyeti gör.</h2>
             <p>
               Karmaşık bütçe tabloları yok. Sadece bir soru: bu, kaç saatlik
@@ -211,7 +210,7 @@ export function Landing() {
 
         <section className="section demo-section">
           <div className="demo-copy">
-            <span className="eyebrow">Şimdi dene</span>
+            <span className="eyebrow">03 / Şimdi dene</span>
             <h2>Bir fiyat yaz. Emeğini gör.</h2>
             <p>
               Maaşını ve almak istediğin şeyin fiyatını gir; sonucu anında gör.
@@ -270,7 +269,7 @@ export function Landing() {
 
         <section id="ozellikler" className="section">
           <div className="section-head">
-            <span className="eyebrow">Özellikler</span>
+            <span className="eyebrow">04 / Özellikler</span>
             <h2>Harcamayı değil, hayatını düşün.</h2>
             <p>
               Her şey tek bir soruya hizmet ediyor: bu, gerçekten buna değer mi?
@@ -292,7 +291,7 @@ export function Landing() {
 
         <section id="fiyat" className="section">
           <div className="section-head">
-            <span className="eyebrow">Fiyat</span>
+            <span className="eyebrow">05 / Fiyat</span>
             <h2>Başlamak ücretsiz. Kalmak senin kararın.</h2>
             <p>
               Temel ihtiyaçlar için ücretsiz sürüm yeterli. Daha fazlası için
@@ -340,7 +339,7 @@ export function Landing() {
 
         <section id="sss" className="section">
           <div className="section-head">
-            <span className="eyebrow">SSS</span>
+            <span className="eyebrow">06 / SSS</span>
             <h2>Merak edilenler.</h2>
           </div>
 
@@ -355,7 +354,7 @@ export function Landing() {
         </section>
 
         <section className="final-cta">
-          <span className="eyebrow">Karar senin</span>
+          <span className="eyebrow">07 / Karar senin</span>
           <h2>
             Bir sonraki alışverişinde, ömründen kaç saat gittiğini bil.
           </h2>

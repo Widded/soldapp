@@ -1,37 +1,41 @@
-# kaç saat?
+# kaç saat? — web
 
-Fiyatları ömrüne çeviren mikro uygulama. Maaşını ve çalışma düzenini gir; her
-fiyat etiketinin kaç saatlik emeğine mal olduğunu gör. Karar listesi, bekleme
-süresi ve "kurtardığın saat" takibi ile birlikte.
+One-page tanıtım + giriş/kayıt + kullanıcı paneli.
 
 ## Çalıştırma
 
 ```bash
 npm install
+cp .env.example .env   # Supabase anahtarlarını gir (opsiyonel)
 npm run dev
 ```
 
-Tarayıcıda `http://localhost:5173` adresini aç.
+`http://localhost:5173`.
 
-## Build
+Supabase anahtarı yoksa uygulama **demo modunda** çalışır; veriler
+`localStorage` içinde tutulur.
 
-```bash
-npm run build
-npm run preview
-```
+## Sayfalar
+
+- `/` — tanıtım: hero, fiş görseli, canlı hesaplayıcı, nasıl çalışır,
+  özellikler, fiyat, SSS
+- `/giris` — giriş
+- `/kayit` — kayıt
+- `/panel` — korumalı panel: hesaplayıcı, kararlar, ayarlar, istatistikler
+
+## Supabase
+
+1. SQL Editor'de `supabase/schema.sql` dosyasını çalıştır.
+2. `profiles` ve `decisions` tabloları RLS ile korunur.
+3. `VITE_SUPABASE_URL` ve `VITE_SUPABASE_ANON_KEY` değerlerini `.env`'e yaz.
 
 ## Yapı
 
-- `src/components/Onboarding.tsx` — ilk kurulum (kazanç, saat, yol, gün)
-- `src/components/Calculator.tsx` — fiyat → emek çevirici + karar ekleme
-- `src/components/Decisions.tsx` — karar listesi, bekleme süresi, kurtarılan saat
-- `src/components/SettingsView.tsx` — ayarlar + premium teaser
-- `src/lib/calc.ts` — gerçek saatlik değer hesabı
-- `src/lib/storage.ts` — localStorage kalıcılığı
-- `src/lib/format.ts` — TL ve süre biçimlendirme
-
-## Notlar
-
-- Backend yok; tüm veriler tarayıcıda `localStorage` içinde tutulur.
-- PWA manifest hazır; mobilde "Ana ekrana ekle" ile uygulama gibi açılır.
-- Ödeme entegrasyonu henüz yok (premium bölümü teaser).
+- `src/pages/Landing.tsx` — tanıtım
+- `src/pages/Login.tsx` / `Signup.tsx` — kimlik doğrulama
+- `src/pages/Panel.tsx` — kullanıcı paneli
+- `src/components/ReceiptMock.tsx` — fiş görseli
+- `src/lib/auth.tsx` — Supabase auth + demo fallback
+- `src/lib/decisions.ts` / `profile.ts` — bulut veya yerel veri
+- `src/lib/calc.ts` / `format.ts` — hesaplama ve biçimlendirme
+- `src/landing.css` — siyah / beyaz / yeşil tasarım sistemi

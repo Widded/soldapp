@@ -41,7 +41,7 @@ export function SiteNav() {
                 Giriş yap
               </Link>
               <Link to="/kayit" className="btn btn-primary btn-sm">
-                Ücretsiz başla
+                Başla
               </Link>
             </>
           )}
