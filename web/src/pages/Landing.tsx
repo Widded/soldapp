@@ -85,7 +85,8 @@ export function Landing() {
             <div className="hero-copy">
               <p className="kicker">SOLD / zamanın fiyatı</p>
               <h1>
-                Fiyatı değil, <em>harcadığın zamanı</em> gör.
+                Fiyatı değil, <span className="hl">harcadığın zamanı</span>{' '}
+                gör.
               </h1>
               <p className="hero-sub">
                 Maaşını gir. Her alışverişin kaç saatlik emeğine mal olduğunu
@@ -112,6 +113,8 @@ export function Landing() {
             </div>
 
             <div className="hero-card">
+              <span className="hero-sticker">Zaman = para</span>
+
               <div className="hero-card-top">
                 <span>Örnek hesap</span>
                 <span>01 / 02</span>
@@ -224,7 +227,8 @@ export function Landing() {
           <div className="manifesto-inner">
             <p className="kicker kicker-light">Manifesto</p>
             <h2>
-              Her fiyat etiketi, <em>ödenmemiş bir zaman borcudur.</em>
+              Her fiyat etiketi,{' '}
+              <span className="hl-ink">ödenmemiş bir zaman borcudur.</span>
             </h2>
             <p>
               SOLD bu borcu görünür kılar. Bir şeyin gerçek maliyeti cüzdanındaki
