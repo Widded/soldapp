@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.8,
   },
   brandAccent: {
-    color: C.accent,
+    color: C.lime,
   },
   tagline: {
     marginTop: 4,

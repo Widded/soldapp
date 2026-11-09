@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   noticeText: {
-    color: C.accent,
+    color: C.lime,
     fontFamily: MONO,
     fontSize: 9,
     letterSpacing: 0.8,

@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   heroValue: {
     marginTop: 6,
-    color: C.accent,
+    color: C.lime,
     fontSize: 40,
     fontWeight: '700',
     letterSpacing: -1.6,
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   recentTime: {
-    color: C.text,
+    color: C.lime,
     fontSize: 12.5,
     fontWeight: '600',
   },

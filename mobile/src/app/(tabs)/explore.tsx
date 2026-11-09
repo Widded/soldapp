@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(200,255,77,0.1)',
   },
   tagText: {
-    color: C.accent,
+    color: C.lime,
     fontSize: 10,
     fontWeight: '600',
   },

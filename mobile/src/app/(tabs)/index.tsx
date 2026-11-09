@@ -252,6 +252,7 @@ export default function HomeScreen() {
                   styles.statusDot,
                   decision.status === 'waiting' && styles.statusDotWaiting,
                   decision.status === 'skipped' && styles.statusDotSkipped,
+                  decision.status === 'bought' && styles.statusDotBought,
                 ]}
               />
               <View style={styles.recentCopy}>
@@ -395,7 +396,7 @@ const styles = StyleSheet.create({
   },
   resultValue: {
     marginTop: 6,
-    color: C.accent,
+    color: C.lime,
     fontSize: 44,
     fontWeight: '700',
     letterSpacing: -2,
@@ -471,7 +472,7 @@ const styles = StyleSheet.create({
   },
   notice: {
     marginTop: 10,
-    color: C.accent,
+    color: C.lime,
     fontSize: 12,
     textAlign: 'center',
   },
@@ -511,13 +512,16 @@ const styles = StyleSheet.create({
     width: 7,
     height: 7,
     borderRadius: 4,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: 'rgba(242,237,226,0.2)',
   },
   statusDotWaiting: {
-    backgroundColor: C.accent,
+    backgroundColor: C.muted,
   },
   statusDotSkipped: {
-    backgroundColor: C.accent,
+    backgroundColor: C.lime,
+  },
+  statusDotBought: {
+    backgroundColor: C.clay,
   },
   recentCopy: {
     flex: 1,
@@ -533,7 +537,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   recentTime: {
-    color: C.text,
+    color: C.lime,
     fontSize: 12.5,
     fontWeight: '600',
   },

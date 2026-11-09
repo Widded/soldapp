@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     marginBottom: 26,
   },
   brandAccent: {
-    color: C.accent,
+    color: C.lime,
   },
   eyebrow: {
     marginBottom: 12,

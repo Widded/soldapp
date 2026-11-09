@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   hours: {
-    color: C.accent,
+    color: C.lime,
     fontFamily: MONO,
     fontSize: 12,
     fontWeight: '700',
@@ -196,16 +196,16 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   badgeWaiting: {
-    color: C.accent,
-    backgroundColor: 'rgba(198,255,61,0.08)',
+    color: C.muted,
+    backgroundColor: 'rgba(242,237,226,0.06)',
   },
   badgeMuted: {
-    color: C.muted,
-    backgroundColor: 'rgba(255,255,255,0.05)',
+    color: C.clay,
+    backgroundColor: 'rgba(217,119,87,0.12)',
   },
   badgeSkipped: {
-    color: C.accent,
-    backgroundColor: 'rgba(198,255,61,0.08)',
+    color: C.lime,
+    backgroundColor: 'rgba(201,245,63,0.1)',
   },
   actions: {
     flexDirection: 'row',

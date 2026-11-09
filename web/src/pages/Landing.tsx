@@ -32,19 +32,33 @@ const NEW_STEPS = [
 const STEPS = [
   {
     no: '01',
-    title: 'Kazancını gir',
-    text: 'Aylık net maaşın, haftalık saatlerin ve yol süren. Gerçek saatlik değerin saniyeler içinde çıksın.',
+    title: 'Fiyatı yaz',
+    text: 'Ne almak istediğini ve fiyatını gir. Kaç saat olduğunu anında gör.',
   },
   {
     no: '02',
-    title: 'Fiyatı sor',
-    text: 'Bir şey almak istediğinde fiyatını yaz. Kaç saat, kaç gün, kaç ay olduğunu gör.',
+    title: 'Bekleme süresi koy',
+    text: '24 saat, 3 gün veya 7 gün. Duygu geçsin, acele karar verme.',
   },
   {
     no: '03',
     title: 'Karar ver',
-    text: '24 saat, 3 gün veya 7 gün bekle. Duygu geçince karar ver; vazgeçtiğin her şey kurtardığın saat olur.',
+    text: 'Aldım ya da vazgeçtim. İkisi de deftere kaydedilir.',
   },
+  {
+    no: '04',
+    title: 'Saat birikir',
+    text: 'Vazgeçtiğin her şey, geri kazandığın zaman olarak birikir.',
+  },
+];
+
+const LEDGER = [
+  { name: 'Simit', price: '₺15', time: '7 dakika' },
+  { name: 'Filtre kahve', price: '₺120', time: '52 dakika' },
+  { name: 'Netflix', price: '₺150', time: '1 saat 5 dk' },
+  { name: 'Spor salonu', price: '₺1.200 / ay', time: '8 saat 42 dk' },
+  { name: 'Yeni telefon', price: '₺24.999', time: '18 gün 1 saat' },
+  { name: 'Hafta sonu tatili', price: '₺6.000', time: '4 gün 3 saat' },
 ];
 
 const FORMULA = [
@@ -225,19 +239,43 @@ export function Landing() {
           </div>
         </section>
 
-        <section id="nasil" className="section how">
+        <section id="defter" className="section ledger-section">
           <div className="section-head">
-            <p className="section-label">02 — Nasıl çalışır</p>
-            <h2>Üç adım. Tek soru.</h2>
+            <p className="section-label">02 — Zaman defteri</p>
+            <h2>Bazı fiyatlar kaç saat eder?</h2>
             <p>
-              “Bu, kaç saatlik emeğim?” Bütün uygulama bu soruya hizmet ediyor.
+              ₺30.000 net maaş, haftada 45 saat ve günde 1 saat yol
+              varsayımıyla.
             </p>
           </div>
 
-          <div className="how-grid">
+          <div className="ledger">
+            <div className="ledger-row ledger-header">
+              <span>Ürün</span>
+              <span>Fiyat</span>
+              <span>SOLD’da</span>
+            </div>
+            {LEDGER.map((item) => (
+              <div className="ledger-row" key={item.name}>
+                <span className="ledger-name">{item.name}</span>
+                <span className="ledger-price">{item.price}</span>
+                <span className="ledger-time">{item.time}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="nasil" className="section loop-section">
+          <div className="section-head">
+            <p className="section-label">03 — Karar döngüsü</p>
+            <h2>Bir karar, dört adım.</h2>
+            <p>Fiyat → bekle → karar → kurtarılan saat. Döngü bu.</p>
+          </div>
+
+          <div className="loop-grid">
             {STEPS.map((step) => (
-              <div className="how-step" key={step.no}>
-                <span className="how-no">{step.no}</span>
+              <div className="loop-step" key={step.no}>
+                <span className="loop-no">{step.no}</span>
                 <h3>{step.title}</h3>
                 <p>{step.text}</p>
               </div>
@@ -245,9 +283,9 @@ export function Landing() {
           </div>
         </section>
 
-        <section id="defter" className="section app-section">
+        <section id="uygulama" className="section app-section">
           <div className="section-head">
-            <p className="section-label">03 — Uygulama</p>
+            <p className="section-label">04 — Uygulama</p>
             <h2>
               Bütün kararların, <span className="accent">tek defterde</span>.
             </h2>
@@ -309,7 +347,7 @@ export function Landing() {
         <section className="section precision">
           <div className="precision-grid">
             <div className="section-head precision-head">
-              <p className="section-label">04 — Hassasiyet</p>
+              <p className="section-label">05 — Hassasiyet</p>
               <h2>
                 Saatlik değerini bilmiyor musun?{' '}
                 <span className="accent">SOLD biliyor.</span>
@@ -338,7 +376,7 @@ export function Landing() {
 
         <section id="fiyat" className="section pricing">
           <div className="section-head">
-            <p className="section-label">05 — Fiyat</p>
+            <p className="section-label">06 — Fiyat</p>
             <h2>Başlamak ücretsiz.</h2>
             <p>
               Temel ihtiyaçlar için ücretsiz sürüm yeterli. Daha fazlası için
@@ -388,7 +426,7 @@ export function Landing() {
 
         <section id="sss" className="section faq-section">
           <div className="section-head">
-            <p className="section-label">06 — SSS</p>
+            <p className="section-label">07 — SSS</p>
             <h2>Sıkça sorulan sorular.</h2>
             <p>
               Aklına takılan başka bir şey varsa{' '}
@@ -408,7 +446,7 @@ export function Landing() {
 
         <section className="final-cta">
           <div className="final-inner">
-            <p className="section-label">07 — Karar</p>
+            <p className="section-label">08 — Karar</p>
             <h2>
               Fiyat girildi.{' '}
               <span className="dark-hl">Zaman geri geldi.</span>
