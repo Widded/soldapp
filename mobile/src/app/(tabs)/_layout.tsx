@@ -9,6 +9,7 @@ function Dot({ color }: { color: ColorValue }) {
       style={{
         width: 6,
         height: 6,
+        borderRadius: 3,
         backgroundColor: color,
         marginBottom: 2,
       }}
@@ -42,9 +43,8 @@ export default function TabsLayout() {
         tabBarInactiveTintColor: C.muted,
         tabBarLabelStyle: {
           fontFamily: MONO,
-          fontSize: 8,
-          letterSpacing: 1,
-          textTransform: 'uppercase',
+          fontSize: 9,
+          letterSpacing: 0,
         },
         tabBarIcon: ({ color }) => <Dot color={color} />,
       }}

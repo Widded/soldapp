@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useAuth } from '@/lib/auth';
 import { isSupabaseConfigured } from '@/lib/supabase';
-import { C, SERIF } from '@/lib/theme';
+import { C } from '@/lib/theme';
 import {
   Card,
   Field,
@@ -178,11 +178,7 @@ const styles = StyleSheet.create({
     letterSpacing: -1.4,
   },
   titleItalic: {
-    fontFamily: SERIF,
-    fontStyle: 'italic',
-    fontWeight: '400',
     color: C.accent,
-    letterSpacing: -0.5,
   },
   sub: {
     marginTop: 14,

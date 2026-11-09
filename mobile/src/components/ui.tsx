@@ -48,7 +48,7 @@ export function Header({ right }: { right?: ReactNode }) {
         <Text style={styles.brand}>
           SOLD<Text style={styles.brandAccent}>.</Text>
         </Text>
-        <Text style={styles.tagline}>FİYATLARI ÖMRÜNE ÇEVİR</Text>
+        <Text style={styles.tagline}>Fiyatları ömrüne çevir</Text>
       </View>
       {right}
     </View>
@@ -58,7 +58,7 @@ export function Header({ right }: { right?: ReactNode }) {
 export function RatePill({ rate }: { rate: string }) {
   return (
     <View style={styles.ratePill}>
-      <Text style={styles.rateLabel}>SAATLİK DEĞERİN</Text>
+      <Text style={styles.rateLabel}>Saatlik değerin</Text>
       <Text style={styles.rateValue}>{rate}</Text>
     </View>
   );
@@ -278,93 +278,87 @@ const styles = StyleSheet.create({
     color: C.text,
     fontSize: 22,
     fontWeight: '700',
-    letterSpacing: -1,
+    letterSpacing: -0.8,
   },
   brandAccent: {
     color: C.accent,
   },
   tagline: {
-    marginTop: 5,
+    marginTop: 4,
     color: C.muted,
     fontFamily: MONO,
-    fontSize: 8,
-    letterSpacing: 1.2,
+    fontSize: 11,
   },
   ratePill: {
     borderWidth: 1,
     borderColor: C.border,
-    borderTopWidth: 2,
-    borderTopColor: C.accent,
-    borderRadius: 2,
-    paddingHorizontal: 10,
-    paddingVertical: 7,
+    borderRadius: 14,
+    backgroundColor: C.card,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
     alignItems: 'flex-end',
   },
   rateLabel: {
     color: C.muted,
     fontFamily: MONO,
-    fontSize: 7,
-    letterSpacing: 0.8,
+    fontSize: 10.5,
   },
   rateValue: {
     marginTop: 2,
-    color: C.text,
+    color: C.accent,
     fontFamily: MONO,
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: '700',
   },
   mono: {
     color: C.muted,
     fontFamily: MONO,
-    fontSize: 9,
-    letterSpacing: 1.2,
+    fontSize: 11,
   },
   card: {
     backgroundColor: C.card,
     borderWidth: 1,
     borderColor: C.border,
-    borderRadius: 4,
-    padding: 18,
+    borderRadius: 20,
+    padding: 22,
   },
   cardAccent: {
-    borderTopWidth: 2,
-    borderTopColor: C.accent,
+    borderColor: 'rgba(200,255,77,0.3)',
   },
   primaryBtn: {
-    backgroundColor: C.text,
-    borderRadius: 2,
+    backgroundColor: C.accent,
+    borderRadius: 999,
     paddingVertical: 15,
     alignItems: 'center',
   },
   primaryBtnText: {
-    color: C.bg,
+    color: C.accentInk,
     fontFamily: MONO,
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 1.2,
+    fontSize: 14,
+    fontWeight: '600',
   },
   ghostBtn: {
     borderWidth: 1,
     borderColor: C.border,
-    borderRadius: 2,
+    borderRadius: 999,
     paddingVertical: 14,
     alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.02)',
   },
   ghostBtnDanger: {
-    borderColor: '#3a1d1d',
+    borderColor: 'rgba(255,107,107,0.3)',
   },
   ghostBtnText: {
     color: C.text,
     fontFamily: MONO,
-    fontSize: 10,
-    fontWeight: '600',
-    letterSpacing: 1,
+    fontSize: 14,
+    fontWeight: '500',
   },
   ghostBtnTextDanger: {
     color: C.danger,
   },
   disabled: {
-    opacity: 0.3,
+    opacity: 0.35,
   },
   pressed: {
     opacity: 0.75,
@@ -372,9 +366,9 @@ const styles = StyleSheet.create({
   chip: {
     borderWidth: 1,
     borderColor: C.border,
-    borderRadius: 2,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    borderRadius: 999,
+    paddingHorizontal: 14,
+    paddingVertical: 9,
   },
   chipActive: {
     backgroundColor: C.accent,
@@ -383,36 +377,31 @@ const styles = StyleSheet.create({
   chipText: {
     color: C.muted,
     fontFamily: MONO,
-    fontSize: 9,
-    letterSpacing: 0.5,
+    fontSize: 13,
   },
   chipTextActive: {
     color: C.accentInk,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   stat: {
     flex: 1,
     backgroundColor: C.card,
     borderWidth: 1,
     borderColor: C.border,
-    borderTopWidth: 2,
-    borderTopColor: C.accent,
-    borderRadius: 4,
-    padding: 14,
+    borderRadius: 16,
+    padding: 15,
   },
   statLabel: {
     color: C.muted,
     fontFamily: MONO,
-    fontSize: 8,
-    letterSpacing: 0.7,
-    textTransform: 'uppercase',
+    fontSize: 11.5,
   },
   statValue: {
     marginTop: 6,
     color: C.text,
     fontSize: 19,
     fontWeight: '700',
-    letterSpacing: -0.5,
+    letterSpacing: -0.3,
   },
   field: {
     marginBottom: 14,
@@ -421,31 +410,34 @@ const styles = StyleSheet.create({
     marginBottom: 7,
     color: C.muted,
     fontFamily: MONO,
-    fontSize: 9,
-    letterSpacing: 1,
+    fontSize: 12,
+    fontWeight: '500',
   },
   fieldRow: {
     flexDirection: 'row',
     alignItems: 'baseline',
-    borderBottomWidth: 1,
-    borderBottomColor: C.border,
-    paddingBottom: 8,
+    borderWidth: 1,
+    borderColor: C.border,
+    borderRadius: 14,
+    backgroundColor: C.card2,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
   },
   fieldRowFocus: {
-    borderBottomColor: C.accent,
+    borderColor: C.accent,
   },
   affix: {
     color: C.muted,
     fontFamily: MONO,
-    fontSize: 11,
+    fontSize: 13,
   },
   input: {
     flex: 1,
     padding: 0,
     color: C.text,
-    fontSize: 26,
-    fontWeight: '700',
-    letterSpacing: -0.7,
+    fontSize: 22,
+    fontWeight: '600',
+    letterSpacing: -0.4,
   },
   inputMd: {
     fontSize: 15,
@@ -460,15 +452,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: 'dashed',
     borderColor: C.border,
-    borderRadius: 4,
+    borderRadius: 20,
     paddingVertical: 30,
     paddingHorizontal: 20,
     alignItems: 'center',
   },
   emptyText: {
     color: C.muted,
-    fontSize: 12,
-    lineHeight: 18,
+    fontSize: 13,
+    lineHeight: 19,
     textAlign: 'center',
   },
   toast: {
@@ -478,15 +470,14 @@ const styles = StyleSheet.create({
     bottom: 24,
     alignItems: 'center',
     backgroundColor: C.text,
-    borderRadius: 2,
+    borderRadius: 999,
     paddingVertical: 12,
   },
   toastText: {
     color: C.bg,
     fontFamily: MONO,
-    fontSize: 9,
-    fontWeight: '700',
-    letterSpacing: 0.8,
+    fontSize: 12,
+    fontWeight: '600',
   },
   divider: {
     height: 1,
