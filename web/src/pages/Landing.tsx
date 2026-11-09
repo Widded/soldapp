@@ -2,19 +2,21 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { SiteNav } from '../components/SiteNav';
 import { SiteFooter } from '../components/SiteFooter';
-import { ReceiptMock } from '../components/ReceiptMock';
 import { formatDuration, formatTL } from '../lib/format';
 
 const STEPS = [
   {
+    icon: 'clock',
     title: 'Kazancını gir',
     text: 'Aylık net maaşın, haftalık saatlerin ve yol süren. Gerçek saatlik değerin saniyeler içinde çıksın.',
   },
   {
+    icon: 'spark',
     title: 'Fiyatı sor',
     text: 'Bir şey almak istediğinde fiyatını yaz. Kaç saat, kaç gün, kaç ay olduğunu gör.',
   },
   {
+    icon: 'chart',
     title: 'Karar ver',
     text: '24 saat, 3 gün veya 7 gün bekle. Duygu geçince karar ver; vazgeçtiğin her şey kurtardığın saat olur.',
   },
@@ -35,21 +37,6 @@ const FEATURES = [
     icon: 'spark',
     title: 'Kurtardığın saat',
     text: 'Vazgeçtiğin her alışveriş, geri kazandığın zamandır.',
-  },
-  {
-    icon: 'chart',
-    title: 'Haftalık rapor',
-    text: 'Nereye gittiğini gör. Harcamalarını saat cinsinden oku.',
-  },
-  {
-    icon: 'widget',
-    title: 'Ana ekran widget’ı',
-    text: 'Uygulamayı açmadan, anlık çevirici ile hesapla.',
-  },
-  {
-    icon: 'lock',
-    title: 'Gizlilik',
-    text: 'Verilerin sende. İstediğin an tek tıkla sil.',
   },
 ];
 
@@ -90,22 +77,10 @@ function FeatureIcon({ name }: { name: string }) {
         <rect x="14" y="5" width="3" height="14" rx="1" />
       </>
     ),
-    spark: <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />,
+    spark: (
+      <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />
+    ),
     chart: <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />,
-    widget: (
-      <>
-        <rect x="3" y="3" width="8" height="8" rx="2" />
-        <rect x="13" y="3" width="8" height="5" rx="2" />
-        <rect x="13" y="10" width="8" height="11" rx="2" />
-        <rect x="3" y="13" width="8" height="8" rx="2" />
-      </>
-    ),
-    lock: (
-      <>
-        <rect x="5" y="11" width="14" height="10" rx="3" />
-        <path d="M8 11V8a4 4 0 0 1 8 0v3" />
-      </>
-    ),
   };
 
   return (
@@ -143,9 +118,9 @@ export function Landing() {
         <section className="hero">
           <div className="hero-inner">
             <div className="hero-copy">
-              <span className="eyebrow">01 / Zaman = para</span>
+              <span className="eyebrow">Zaman = para</span>
               <h1>
-                Bir fiyat etiketi, <em>kaç saatlik</em> hayatın?
+                Fiyatları değil, <em>ömrünü</em> düşün.
               </h1>
               <p className="hero-sub">
                 Maaşını gir. Her alışverişin kaç saatlik emeğine mal olduğunu
@@ -165,31 +140,62 @@ export function Landing() {
             </div>
 
             <div className="hero-visual">
-              <ReceiptMock />
-            </div>
-          </div>
-        </section>
+              <div className="hero-calc">
+                <div className="hero-calc-head">
+                  <span className="live-dot" />
+                  Canlı hesaplama
+                </div>
 
-        <section className="stats-strip">
-          <div className="stats-inner">
-            <div>
-              <strong>30 sn</strong>
-              <span>kurulum</span>
-            </div>
-            <div>
-              <strong>1</strong>
-              <span>soru: kaç saatlik?</span>
-            </div>
-            <div>
-              <strong>0 ₺</strong>
-              <span>başlamak için</span>
+                <label className="hero-calc-field">
+                  <span>Aylık net kazanç</span>
+                  <div className="hero-calc-input">
+                    <span>₺</span>
+                    <input
+                      inputMode="numeric"
+                      value={income}
+                      onChange={(event) =>
+                        setIncome(event.target.value.replace(/[^\d]/g, ''))
+                      }
+                    />
+                  </div>
+                </label>
+
+                <label className="hero-calc-field">
+                  <span>Almak istediğin şey</span>
+                  <div className="hero-calc-input">
+                    <span>₺</span>
+                    <input
+                      inputMode="numeric"
+                      value={price}
+                      onChange={(event) =>
+                        setPrice(event.target.value.replace(/[^\d]/g, ''))
+                      }
+                    />
+                  </div>
+                </label>
+
+                <div className="hero-calc-result">
+                  <span>Bu, senin</span>
+                  <strong className="hero-calc-value">{duration}</strong>
+                  <span>emeğin.</span>
+                </div>
+
+                <div className="hero-calc-meta">
+                  <span>Saatlik değerin {formatTL(hourly)}</span>
+                  <span>1 iş günü 9 saat</span>
+                </div>
+
+                <Link to="/kayit" className="btn btn-primary hero-calc-cta">
+                  Kendi hesabını oluştur
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
         <section id="nasil" className="section">
           <div className="section-head">
-            <span className="eyebrow">02 / Nasıl çalışır</span>
+            <span className="eyebrow">Nasıl çalışır</span>
             <h2>Üç adımda, gerçek maliyeti gör.</h2>
             <p>
               Karmaşık bütçe tabloları yok. Sadece bir soru: bu, kaç saatlik
@@ -198,9 +204,11 @@ export function Landing() {
           </div>
 
           <div className="steps">
-            {STEPS.map((step, index) => (
+            {STEPS.map((step) => (
               <div className="step" key={step.title}>
-                <span className="step-no">0{index + 1}</span>
+                <div className="step-icon">
+                  <FeatureIcon name={step.icon} />
+                </div>
                 <h3>{step.title}</h3>
                 <p>{step.text}</p>
               </div>
@@ -208,68 +216,9 @@ export function Landing() {
           </div>
         </section>
 
-        <section className="section demo-section">
-          <div className="demo-copy">
-            <span className="eyebrow">03 / Şimdi dene</span>
-            <h2>Bir fiyat yaz. Emeğini gör.</h2>
-            <p>
-              Maaşını ve almak istediğin şeyin fiyatını gir; sonucu anında gör.
-            </p>
-
-            <div className="demo-fields">
-              <label>
-                Aylık net kazanç
-                <div className="demo-input">
-                  <span>₺</span>
-                  <input
-                    inputMode="numeric"
-                    value={income}
-                    onChange={(event) =>
-                      setIncome(event.target.value.replace(/[^\d]/g, ''))
-                    }
-                  />
-                </div>
-              </label>
-
-              <label>
-                Almayı düşündüğün şey
-                <div className="demo-input">
-                  <span>₺</span>
-                  <input
-                    inputMode="numeric"
-                    value={price}
-                    onChange={(event) =>
-                      setPrice(event.target.value.replace(/[^\d]/g, ''))
-                    }
-                  />
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div className="demo-result">
-            <span className="demo-result-label">Bu, senin</span>
-            <strong>{duration}</strong>
-            <span className="demo-result-sub">emeğin.</span>
-
-            <div className="demo-result-meta">
-              <span>Saatlik değerin {formatTL(hourly)}</span>
-              <span>1 iş günü 9 saat</span>
-            </div>
-
-            <Link
-              to="/kayit"
-              className="btn btn-primary"
-              style={{ marginTop: 18 }}
-            >
-              Kendi hesabını oluştur
-            </Link>
-          </div>
-        </section>
-
         <section id="ozellikler" className="section">
           <div className="section-head">
-            <span className="eyebrow">04 / Özellikler</span>
+            <span className="eyebrow">Özellikler</span>
             <h2>Harcamayı değil, hayatını düşün.</h2>
             <p>
               Her şey tek bir soruya hizmet ediyor: bu, gerçekten buna değer mi?
@@ -291,8 +240,8 @@ export function Landing() {
 
         <section id="fiyat" className="section">
           <div className="section-head">
-            <span className="eyebrow">05 / Fiyat</span>
-            <h2>Başlamak ücretsiz. Kalmak senin kararın.</h2>
+            <span className="eyebrow">Fiyat</span>
+            <h2>Başlamak ücretsiz.</h2>
             <p>
               Temel ihtiyaçlar için ücretsiz sürüm yeterli. Daha fazlası için
               aylık bir kahve fiyatı.
@@ -301,7 +250,9 @@ export function Landing() {
 
           <div className="pricing-grid">
             <div className="price-card">
-              <span className="price-name">Ücretsiz</span>
+              <div className="price-top">
+                <span className="price-name">Ücretsiz</span>
+              </div>
               <div className="price-amount">
                 <strong>₺0</strong>
                 <span>sonsuza kadar</span>
@@ -318,7 +269,10 @@ export function Landing() {
             </div>
 
             <div className="price-card highlight">
-              <span className="price-name">Premium</span>
+              <div className="price-top">
+                <span className="price-name">Premium</span>
+                <span className="price-badge">Popüler</span>
+              </div>
               <div className="price-amount">
                 <strong>₺49</strong>
                 <span>/ ay</span>
@@ -339,7 +293,7 @@ export function Landing() {
 
         <section id="sss" className="section">
           <div className="section-head">
-            <span className="eyebrow">06 / SSS</span>
+            <span className="eyebrow">SSS</span>
             <h2>Merak edilenler.</h2>
           </div>
 
@@ -354,7 +308,6 @@ export function Landing() {
         </section>
 
         <section className="final-cta">
-          <span className="eyebrow">07 / Karar senin</span>
           <h2>
             Bir sonraki alışverişinde, ömründen kaç saat gittiğini bil.
           </h2>
