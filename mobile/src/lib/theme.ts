@@ -1,19 +1,19 @@
 import { Platform } from 'react-native';
 
 export const C = {
-  bg: '#14120e',
-  card: '#1c1914',
-  card2: '#242019',
-  border: 'rgba(237,230,216,0.13)',
-  text: '#ede6d8',
-  muted: '#9c958a',
-  faint: '#3a352c',
-  accent: '#c6a15b',
-  accentInk: '#14120e',
-  lime: '#9dbb7a',
-  moss: '#3a4a35',
-  clay: '#b26b57',
-  danger: '#b26b57',
+  bg: '#091413',
+  card: '#10201a',
+  card2: '#142a22',
+  border: 'rgba(176,228,204,0.12)',
+  text: '#b0e4cc',
+  muted: '#7fa898',
+  faint: '#2a4a3e',
+  accent: '#408a71',
+  accentInk: '#091413',
+  lime: '#b0e4cc',
+  moss: '#285a48',
+  clay: '#7fa898',
+  danger: '#c47a5a',
 };
 
 export const MONO = Platform.select({

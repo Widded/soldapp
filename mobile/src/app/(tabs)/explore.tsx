@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 9,
     paddingVertical: 4,
     borderRadius: 999,
-    backgroundColor: 'rgba(157,187,122,0.12)',
+    backgroundColor: 'rgba(176,228,204,0.12)',
   },
   tagText: {
     color: C.lime,

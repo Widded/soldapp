@@ -332,7 +332,7 @@ const styles = StyleSheet.create({
     padding: 22,
   },
   cardAccent: {
-    borderColor: 'rgba(157,187,122,0.35)',
+    borderColor: 'rgba(176,228,204,0.35)',
   },
   primaryBtn: {
     backgroundColor: C.accent,
@@ -352,10 +352,10 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingVertical: 14,
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.02)',
+    backgroundColor: 'rgba(176,228,204,0.02)',
   },
   ghostBtnDanger: {
-    borderColor: 'rgba(255,107,107,0.3)',
+    borderColor: 'rgba(196,122,90,0.3)',
   },
   ghostBtnText: {
     color: C.text,

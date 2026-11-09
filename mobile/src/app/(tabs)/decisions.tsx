@@ -197,15 +197,15 @@ const styles = StyleSheet.create({
   },
   badgeWaiting: {
     color: C.muted,
-    backgroundColor: 'rgba(237,230,216,0.06)',
+    backgroundColor: 'rgba(176,228,204,0.06)',
   },
   badgeMuted: {
     color: C.clay,
-    backgroundColor: 'rgba(178,107,87,0.14)',
+    backgroundColor: 'rgba(196,122,90,0.14)',
   },
   badgeSkipped: {
     color: C.lime,
-    backgroundColor: 'rgba(157,187,122,0.12)',
+    backgroundColor: 'rgba(176,228,204,0.12)',
   },
   actions: {
     flexDirection: 'row',

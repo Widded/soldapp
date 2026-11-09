@@ -1,28 +1,30 @@
 /* ============================================================
-   SOLD — warm dark product site
-   Logma'nın iskeleti; mor/cam/parlama yok.
-   Sıcak kömür + krem + lime.
+   SOLD — dark green product site
+   Color Hunt paleti: #091413 · #285A48 · #408A71 · #B0E4CC
+   Zemin #091413, yüzeyler orman yeşili, aksiyon zümrüt,
+   metin ve zaman nane. Mor/cam/parlama yok.
    ============================================================ */
 
 :root {
-  --bg: #14120e;
-  --bg-2: #100e0b;
-  --surface: #1c1914;
-  --surface-2: #242019;
-  --card: #1c1914;
-  --card-2: #242019;
-  --border: rgba(237, 230, 216, 0.13);
-  --border-strong: rgba(237, 230, 216, 0.22);
-  --text: #ede6d8;
-  --muted: #9c958a;
-  --brass: #c6a15b;
-  --lime: #9dbb7a;
-  --accent: #c6a15b;
-  --accent-ink: #14120e;
-  --ink: #14120e;
-  --moss: #3a4a35;
-  --clay: #b26b57;
-  --danger: #b26b57;
+  --bg: #091413;
+  --bg-2: #060f0d;
+  --surface: #10201a;
+  --surface-2: #142a22;
+  --card: #10201a;
+  --card-2: #142a22;
+  --border: rgba(176, 228, 204, 0.12);
+  --border-strong: rgba(176, 228, 204, 0.22);
+  --text: #b0e4cc;
+  --text-bright: #dcf4e7;
+  --muted: #7fa898;
+  --brass: #408a71;
+  --lime: #b0e4cc;
+  --accent: #b0e4cc;
+  --accent-ink: #091413;
+  --ink: #091413;
+  --moss: #285a48;
+  --clay: #7fa898;
+  --danger: #c47a5a;
   --radius: 18px;
   --radius-sm: 12px;
   --display: 'Space Grotesk Variable', -apple-system, BlinkMacSystemFont,
@@ -59,7 +61,7 @@ body::before {
   position: fixed;
   inset: 0;
   background-image: radial-gradient(
-    rgba(243, 235, 221, 0.05) 0.5px,
+    rgba(176, 228, 204, 0.05) 0.5px,
     transparent 0.5px
   );
   background-size: 5px 5px;
@@ -125,7 +127,7 @@ input {
 }
 
 .btn-primary:hover {
-  background: #e3b45a;
+  background: #4a9d81;
 }
 
 .btn-primary:disabled {
@@ -154,7 +156,7 @@ input {
 
 .btn-danger {
   background: transparent;
-  border-color: rgba(255, 107, 107, 0.35);
+  border-color: rgba(196, 122, 90, 0.35);
   color: var(--danger);
 }
 
@@ -169,7 +171,7 @@ input {
 
 .btn-outline-dark {
   background: transparent;
-  border-color: rgba(18, 16, 12, 0.5);
+  border-color: rgba(9, 20, 19, 0.5);
   color: var(--ink);
 }
 
@@ -209,7 +211,7 @@ input {
 }
 
 .accent {
-  color: var(--lime);
+  color: var(--text-bright);
 }
 
 /* ---------- layout ---------- */
@@ -261,7 +263,7 @@ input {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(18, 16, 12, 0.92);
+  background: rgba(9, 20, 19, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -380,7 +382,7 @@ input {
 
 .hero-note {
   margin: 18px 0 0;
-  color: #6f6d65;
+  color: #5b7a6f;
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.04em;
@@ -473,10 +475,10 @@ input {
 .hero-result {
   margin-top: 16px;
   padding: 16px;
-  border: 1px solid rgba(157, 187, 122, 0.32);
+  border: 1px solid rgba(176, 228, 204, 0.32);
   border-left: 3px solid var(--lime);
   border-radius: 14px;
-  background: rgba(157, 187, 122, 0.07);
+  background: rgba(176, 228, 204, 0.07);
   color: var(--text);
 }
 
@@ -593,7 +595,7 @@ input {
 }
 
 .compare-new {
-  border-color: rgba(157, 187, 122, 0.4);
+  border-color: rgba(176, 228, 204, 0.4);
   background: var(--surface);
   color: var(--text);
 }
@@ -662,13 +664,13 @@ input {
 
 .compare-card li span {
   flex-shrink: 0;
-  color: #6f6d65;
+  color: #5b7a6f;
   font-family: var(--mono);
   font-size: 9.5px;
 }
 
 .compare-old li span {
-  color: rgba(217, 119, 87, 0.65);
+  color: rgba(196, 122, 90, 0.65);
 }
 
 .compare-new li {
@@ -677,7 +679,7 @@ input {
 }
 
 .compare-new li span {
-  color: rgba(157, 187, 122, 0.65);
+  color: rgba(176, 228, 204, 0.65);
 }
 
 /* ---------- ledger ---------- */
@@ -1013,10 +1015,10 @@ input {
 .formula-total {
   margin-top: 10px;
   padding: 12px;
-  border: 1px solid rgba(157, 187, 122, 0.32);
+  border: 1px solid rgba(176, 228, 204, 0.32);
   border-left: 3px solid var(--lime);
   border-radius: 12px;
-  background: rgba(157, 187, 122, 0.07);
+  background: rgba(176, 228, 204, 0.07);
 }
 
 .formula-total span {
@@ -1031,7 +1033,7 @@ input {
 
 .formula-note {
   margin: 12px 0 0;
-  color: #6f6d65;
+  color: #5b7a6f;
   font-family: var(--mono);
   font-size: 9.5px;
 }
@@ -1054,7 +1056,7 @@ input {
 }
 
 .price-premium {
-  border-color: rgba(198, 161, 91, 0.35);
+  border-color: rgba(64, 138, 113, 0.35);
   background: var(--surface);
 }
 
@@ -1288,7 +1290,7 @@ input {
 .footer-cols a {
   display: block;
   margin-bottom: 9px;
-  color: rgba(243, 235, 221, 0.75);
+  color: rgba(176, 228, 204, 0.75);
   font-size: 12.5px;
   text-decoration: none;
 }
@@ -1305,7 +1307,7 @@ input {
   margin: 44px auto 0;
   padding-top: 18px;
   border-top: 1px solid var(--border);
-  color: #6f6d65;
+  color: #5b7a6f;
   font-family: var(--mono);
   font-size: 9.5px;
   letter-spacing: 0.04em;
@@ -1386,14 +1388,14 @@ input {
 }
 
 .form-error {
-  border: 1px solid rgba(255, 107, 107, 0.3);
-  background: rgba(255, 107, 107, 0.08);
-  color: #ff9b9b;
+  border: 1px solid rgba(196, 122, 90, 0.3);
+  background: rgba(196, 122, 90, 0.08);
+  color: #d99a80;
 }
 
 .form-info {
-  border: 1px solid rgba(201, 245, 63, 0.3);
-  background: rgba(201, 245, 63, 0.07);
+  border: 1px solid rgba(176, 228, 204, 0.3);
+  background: rgba(176, 228, 204, 0.07);
   color: var(--lime);
 }
 
@@ -1451,7 +1453,7 @@ input {
   gap: 16px;
   height: 68px;
   padding: 0 24px;
-  background: rgba(18, 16, 12, 0.92);
+  background: rgba(9, 20, 19, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -1599,7 +1601,7 @@ input {
 }
 
 .premium-side {
-  border-color: rgba(198, 161, 91, 0.35);
+  border-color: rgba(64, 138, 113, 0.35);
   background: var(--surface);
 }
 
@@ -1678,7 +1680,7 @@ input {
 }
 
 .field input::placeholder {
-  color: #5a584f;
+  color: #4a6b5f;
 }
 
 .mini-field {
@@ -1759,7 +1761,7 @@ input {
   gap: 12px;
   margin-top: 16px;
   padding: 13px 15px;
-  border: 1px solid rgba(198, 161, 91, 0.3);
+  border: 1px solid rgba(64, 138, 113, 0.3);
   border-radius: 14px;
   background: var(--surface);
 }
@@ -1908,17 +1910,17 @@ input {
 }
 
 .badge-waiting {
-  background: rgba(243, 235, 221, 0.06);
+  background: rgba(176, 228, 204, 0.06);
   color: var(--muted);
 }
 
 .badge-bought {
-  background: rgba(217, 119, 87, 0.12);
+  background: rgba(196, 122, 90, 0.12);
   color: var(--clay);
 }
 
 .badge-skipped {
-  background: rgba(201, 245, 63, 0.12);
+  background: rgba(176, 228, 204, 0.12);
   color: var(--lime);
 }
 
@@ -1945,7 +1947,7 @@ input {
 
 .premium-card {
   padding: 20px;
-  border: 1px solid rgba(198, 161, 91, 0.35);
+  border: 1px solid rgba(64, 138, 113, 0.35);
   border-radius: 18px;
   background: var(--surface);
 }

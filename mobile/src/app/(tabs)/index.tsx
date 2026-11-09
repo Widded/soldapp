@@ -439,8 +439,8 @@ const styles = StyleSheet.create({
     borderColor: C.border,
   },
   waitChipActive: {
-    borderColor: 'rgba(198,161,91,0.4)',
-    backgroundColor: 'rgba(198,161,91,0.07)',
+    borderColor: 'rgba(64,138,113,0.4)',
+    backgroundColor: 'rgba(64,138,113,0.07)',
   },
   waitText: {
     color: C.muted,
@@ -512,7 +512,7 @@ const styles = StyleSheet.create({
     width: 7,
     height: 7,
     borderRadius: 4,
-    backgroundColor: 'rgba(237,230,216,0.22)',
+    backgroundColor: 'rgba(176,228,204,0.22)',
   },
   statusDotWaiting: {
     backgroundColor: C.muted,

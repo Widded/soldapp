@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: 'rgba(157,187,122,0.3)',
+    borderColor: 'rgba(176,228,204,0.3)',
     backgroundColor: C.card,
   },
   heroLabel: {
