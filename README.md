@@ -39,6 +39,25 @@ Supabase anahtarları yoksa uygulama **demo modunda** çalışır; veriler
 5. `web/.env` ve `mobile/.env` dosyalarına aynı değerleri yaz.
 6. Yeniden başlat.
 
+## Vercel
+
+Bu repo bir monorepo. Vercel'de iki kurulumdan biri kullanılabilir:
+
+1. **Root Directory = `web`** (önerilen): Framework **Vite**, build komutu
+   `npm run build`, output `dist`.
+2. **Root Directory = repo kökü**: kök `vercel.json` otomatik olarak `web/`
+   içine girip kurar ve build eder, çıktıyı `web/dist` olarak yayınlar.
+
+SPA yönlendirmesi (`/giris`, `/panel` vb.) için `vercel.json` dosyalarında
+`/index.html` rewrite'ı hazır.
+
+Vercel > Project Settings > Environment Variables:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
+Bu değerler yoksa uygulama demo modunda çalışır; build yine de başarılı olur.
+
 ## Mobil
 
 ```bash
