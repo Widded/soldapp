@@ -9,7 +9,9 @@ export function formatTL(value: number): string {
 }
 
 export function formatNumber(value: number): string {
-  return value.toFixed(1).replace('.', ',');
+  const rounded = Math.round(value * 10) / 10;
+  if (Number.isInteger(rounded)) return String(rounded);
+  return rounded.toFixed(1).replace('.', ',');
 }
 
 export function formatDuration(hours: number, dailyHours: number): string {

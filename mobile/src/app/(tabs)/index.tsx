@@ -1,32 +1,30 @@
-import { useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Animated,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import { router } from 'expo-router';
 import { useAuth } from '@/lib/auth';
 import { useDecisions } from '@/lib/decisions';
 import { useProfile } from '@/lib/profile';
 import { dailyCommitmentHours, priceToHours, realHourlyRate } from '@/lib/calc';
 import { formatDuration, formatNumber, formatTL } from '@/lib/format';
 import type { Decision } from '@/lib/types';
-import {
-  Card,
-  Chip,
-  Field,
-  Header,
-  Mono,
-  PrimaryButton,
-  RatePill,
-  Screen,
-  Stat,
-} from '@/components/ui';
-import { C, MONO } from '@/lib/theme';
+import { Screen } from '@/components/ui';
+import { C } from '@/lib/theme';
 
 const PRICE_CHIPS = [100, 500, 1000, 5000, 10000];
 const WAIT_OPTIONS = [
-  { days: 1, label: '1 GÜN' },
-  { days: 3, label: '3 GÜN' },
-  { days: 7, label: '7 GÜN' },
+  { days: 1, label: '1 gün' },
+  { days: 3, label: '3 gün' },
+  { days: 7, label: '7 gün' },
 ];
 
-export default function CalculatorScreen() {
+export default function HomeScreen() {
   const { user, demo } = useAuth();
   const userId = user?.id ?? null;
   const cloud = Boolean(userId && !demo);
@@ -38,6 +36,8 @@ export default function CalculatorScreen() {
   const [price, setPrice] = useState('');
   const [waitDays, setWaitDays] = useState(3);
   const [notice, setNotice] = useState<string | null>(null);
+
+  const resultScale = useRef(new Animated.Value(1)).current;
 
   const dailyHours = useMemo(() => dailyCommitmentHours(settings), [settings]);
   const rate = realHourlyRate(settings);
@@ -59,6 +59,20 @@ export default function CalculatorScreen() {
       );
     })
     .reduce((sum, decision) => sum + decision.hours, 0);
+
+  const email = user && 'email' in user ? user.email ?? '' : '';
+  const initial = email ? email.charAt(0).toUpperCase() : 'S';
+
+  useEffect(() => {
+    if (numericPrice <= 0) return;
+    resultScale.setValue(0.96);
+    Animated.spring(resultScale, {
+      toValue: 1,
+      useNativeDriver: true,
+      friction: 7,
+      tension: 140,
+    }).start();
+  }, [numericPrice, resultScale]);
 
   const showNotice = (message: string) => {
     setNotice(message);
@@ -86,211 +100,447 @@ export default function CalculatorScreen() {
 
   return (
     <Screen>
-      <Header right={<RatePill rate={formatTL(rate)} />} />
+      <View style={styles.topBar}>
+        <Text style={styles.logo}>
+          SOLD<Text style={styles.logoDot}>.</Text>
+        </Text>
 
-      {notice ? (
-        <View style={styles.notice}>
-          <Text style={styles.noticeText}>{notice}</Text>
-        </View>
-      ) : null}
+        <Pressable
+          style={({ pressed }) => [styles.avatar, pressed && styles.pressed]}
+          onPress={() => router.push('/settings')}
+        >
+          <Text style={styles.avatarText}>{initial}</Text>
+        </Pressable>
+      </View>
 
-      <Mono style={styles.section}>HESAPLA</Mono>
+      <Text style={styles.heading}>Bugün ne alacaksın?</Text>
+      <Text style={styles.sub}>
+        Fiyatı yaz; kaç saatlik emeğin olduğunu gör.
+      </Text>
 
-      <Card>
-        <Field
-          label="Ne almak istiyorsun? (opsiyonel)"
+      <View style={styles.inputCard}>
+        <TextInput
+          style={styles.itemInput}
           value={name}
           onChangeText={setName}
-          placeholder="Yeni telefon, ayakkabı..."
-          size="md"
+          placeholder="Ne almak istiyorsun? (opsiyonel)"
+          placeholderTextColor={C.faint}
+          maxLength={60}
         />
 
-        <Field
-          label="Fiyatı"
-          value={price}
-          onChangeText={(text) => setPrice(text.replace(/\D/g, ''))}
-          prefix="₺"
-          placeholder="0"
-          keyboardType="numeric"
-        />
+        <View style={styles.priceRow}>
+          <Text style={styles.currency}>₺</Text>
+          <TextInput
+            style={styles.priceInput}
+            value={price}
+            onChangeText={(text) => setPrice(text.replace(/\D/g, ''))}
+            placeholder="0"
+            placeholderTextColor={C.faint}
+            keyboardType="numeric"
+          />
+        </View>
 
         <View style={styles.chips}>
           {PRICE_CHIPS.map((value) => (
-            <Chip
+            <Pressable
               key={value}
-              label={formatTL(value)}
-              active={numericPrice === value}
               onPress={() => setPrice(String(value))}
-            />
+              style={[
+                styles.chip,
+                numericPrice === value && styles.chipActive,
+              ]}
+            >
+              <Text
+                style={[
+                  styles.chipText,
+                  numericPrice === value && styles.chipTextActive,
+                ]}
+              >
+                {formatTL(value)}
+              </Text>
+            </Pressable>
           ))}
         </View>
-      </Card>
-
-      {numericPrice > 0 ? (
-        <Card accent style={styles.result}>
-          <Mono>BU, SENİN</Mono>
-          <Text style={styles.resultValue}>{duration}</Text>
-          <Text style={styles.resultSub}>emeğin.</Text>
-          <View style={styles.resultMeta}>
-            <Mono>Saatlik değerin {formatTL(rate)}</Mono>
-            <Mono>1 iş günü {formatNumber(dailyHours)} saat</Mono>
-          </View>
-        </Card>
-      ) : null}
-
-      {numericPrice > 0 ? (
-        <Card>
-          <Mono style={styles.cardTitle}>KARAR ZAMANI</Mono>
-          <Text style={styles.help}>
-            Hemen alma. Bir süre beklet, duygu geçsin.
-          </Text>
-
-          <View style={styles.chips}>
-            {WAIT_OPTIONS.map((option) => (
-              <Chip
-                key={option.days}
-                label={option.label}
-                active={waitDays === option.days}
-                onPress={() => setWaitDays(option.days)}
-              />
-            ))}
-          </View>
-
-          <View style={styles.addButton}>
-            <PrimaryButton label="Listeye ekle" onPress={addDecision} />
-          </View>
-        </Card>
-      ) : null}
-
-      <View style={styles.stats}>
-        <Stat
-          label="Bu ay kurtardığın"
-          value={
-            savedHours > 0 ? formatDuration(savedHours, dailyHours) : '0 saat'
-          }
-        />
-        <Stat
-          label="Bekleyen karar"
-          value={String(
-            decisions.filter((decision) => decision.status === 'waiting')
-              .length
-          )}
-        />
       </View>
 
-      {decisions.length > 0 ? (
-        <View style={styles.recentWrap}>
-          <Mono style={styles.section}>SON KARARLAR</Mono>
-          {decisions.slice(0, 3).map((decision) => (
-            <View key={decision.id} style={styles.recent}>
-              <View style={styles.recentCopy}>
-                <Text style={styles.recentName}>{decision.name}</Text>
-                <Text style={styles.recentPrice}>{formatTL(decision.price)}</Text>
-              </View>
-              <Text style={styles.recentHours}>
-                {formatDuration(decision.hours, dailyHours)}
+      {numericPrice > 0 ? (
+        <Animated.View
+          style={[styles.result, { transform: [{ scale: resultScale }] }]}
+        >
+          <Text style={styles.resultLabel}>BU, SENİN</Text>
+          <Text style={styles.resultValue}>{duration}</Text>
+          <Text style={styles.resultSub}>emeğin.</Text>
+
+          <View style={styles.resultMeta}>
+            <Text style={styles.metaText}>
+              Saatlik değerin {formatTL(rate)}
+            </Text>
+            <Text style={styles.metaText}>
+              1 iş günü {formatNumber(dailyHours)} saat
+            </Text>
+          </View>
+        </Animated.View>
+      ) : null}
+
+      <View style={styles.waitRow}>
+        <Text style={styles.waitLabel}>Bekletme</Text>
+        <View style={styles.waitOptions}>
+          {WAIT_OPTIONS.map((option) => (
+            <Pressable
+              key={option.days}
+              onPress={() => setWaitDays(option.days)}
+              style={[
+                styles.waitChip,
+                waitDays === option.days && styles.waitChipActive,
+              ]}
+            >
+              <Text
+                style={[
+                  styles.waitText,
+                  waitDays === option.days && styles.waitTextActive,
+                ]}
+              >
+                {option.label}
               </Text>
-            </View>
+            </Pressable>
           ))}
         </View>
-      ) : null}
+      </View>
+
+      <Pressable
+        onPress={addDecision}
+        disabled={numericPrice <= 0}
+        style={({ pressed }) => [
+          styles.addButton,
+          numericPrice <= 0 && styles.addButtonDisabled,
+          pressed && styles.pressed,
+        ]}
+      >
+        <Text
+          style={[
+            styles.addButtonText,
+            numericPrice <= 0 && styles.addButtonTextDisabled,
+          ]}
+        >
+          Karar listesine ekle
+        </Text>
+      </Pressable>
+
+      {notice ? <Text style={styles.notice}>{notice}</Text> : null}
+
+      <View style={styles.recent}>
+        <View style={styles.recentHeader}>
+          <Text style={styles.sectionTitle}>Son kararlar</Text>
+          <Pressable onPress={() => router.push('/decisions')}>
+            <Text style={styles.seeAll}>Tümü</Text>
+          </Pressable>
+        </View>
+
+        {decisions.length === 0 ? (
+          <Text style={styles.empty}>
+            Henüz karar yok. İlk fiyatı yaz, listeye ekle.
+          </Text>
+        ) : (
+          decisions.slice(0, 3).map((decision) => (
+            <Pressable
+              key={decision.id}
+              onPress={() => router.push('/decisions')}
+              style={styles.recentRow}
+            >
+              <View
+                style={[
+                  styles.statusDot,
+                  decision.status === 'waiting' && styles.statusDotWaiting,
+                  decision.status === 'skipped' && styles.statusDotSkipped,
+                ]}
+              />
+              <View style={styles.recentCopy}>
+                <Text style={styles.recentName}>{decision.name}</Text>
+                <Text style={styles.recentPrice}>
+                  {formatTL(decision.price)}
+                </Text>
+              </View>
+              <Text style={styles.recentTime}>
+                {formatDuration(decision.hours, dailyHours)}
+              </Text>
+            </Pressable>
+          ))
+        )}
+
+        <Text style={styles.saved}>
+          Bu ay{' '}
+          {savedHours > 0 ? formatDuration(savedHours, dailyHours) : '0 saat'}{' '}
+          kurtardın.
+        </Text>
+      </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  section: {
-    marginBottom: 10,
-    marginLeft: 2,
+  topBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 18,
   },
-  notice: {
-    marginBottom: 14,
-    borderWidth: 1,
-    borderColor: C.accent,
-    backgroundColor: 'rgba(198,255,61,0.08)',
-    borderRadius: 2,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+  logo: {
+    color: C.text,
+    fontSize: 22,
+    fontWeight: '700',
+    letterSpacing: -0.8,
   },
-  noticeText: {
+  logoDot: {
     color: C.accent,
-    fontFamily: MONO,
-    fontSize: 9,
-    letterSpacing: 0.8,
+  },
+  avatar: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    borderWidth: 1,
+    borderColor: C.border,
+    backgroundColor: C.card,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  avatarText: {
+    color: C.text,
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  pressed: {
+    opacity: 0.8,
+  },
+  heading: {
+    color: C.text,
+    fontSize: 30,
+    fontWeight: '700',
+    letterSpacing: -1.1,
+    lineHeight: 34,
+  },
+  sub: {
+    marginTop: 8,
+    color: C.muted,
+    fontSize: 13.5,
+    lineHeight: 20,
+  },
+  inputCard: {
+    marginTop: 18,
+    padding: 18,
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: C.border,
+    backgroundColor: C.card,
+  },
+  itemInput: {
+    padding: 0,
+    marginBottom: 14,
+    color: C.text,
+    fontSize: 14,
+  },
+  priceRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: 6,
+  },
+  currency: {
+    color: C.muted,
+    fontSize: 24,
+    fontWeight: '500',
+  },
+  priceInput: {
+    flex: 1,
+    padding: 0,
+    color: C.text,
+    fontSize: 40,
+    fontWeight: '700',
+    letterSpacing: -1.8,
   },
   chips: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
-    marginTop: 4,
+    marginTop: 16,
+  },
+  chip: {
+    paddingHorizontal: 12,
+    paddingVertical: 7,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: C.border,
+  },
+  chipActive: {
+    backgroundColor: C.accent,
+    borderColor: C.accent,
+  },
+  chipText: {
+    color: C.muted,
+    fontSize: 12,
+    fontWeight: '500',
+  },
+  chipTextActive: {
+    color: C.accentInk,
+    fontWeight: '600',
   },
   result: {
-    marginTop: 12,
+    marginTop: 20,
+    paddingTop: 18,
+    borderTopWidth: 1,
+    borderTopColor: C.border,
+  },
+  resultLabel: {
+    color: C.muted,
+    fontSize: 12,
+    fontWeight: '500',
   },
   resultValue: {
-    marginTop: 8,
-    color: C.text,
-    fontSize: 46,
+    marginTop: 6,
+    color: C.accent,
+    fontSize: 44,
     fontWeight: '700',
     letterSpacing: -2,
+    lineHeight: 48,
   },
   resultSub: {
     color: C.muted,
-    fontSize: 13,
+    fontSize: 14,
   },
   resultMeta: {
-    marginTop: 16,
-    paddingTop: 14,
-    borderTopWidth: 1,
-    borderTopColor: C.border,
-    gap: 5,
-  },
-  cardTitle: {
-    marginBottom: 4,
-  },
-  help: {
-    color: C.muted,
-    fontSize: 12,
-    lineHeight: 18,
-    marginBottom: 12,
-  },
-  addButton: {
-    marginTop: 14,
-  },
-  stats: {
     flexDirection: 'row',
-    gap: 10,
-    marginTop: 12,
+    flexWrap: 'wrap',
+    gap: 12,
+    marginTop: 16,
   },
-  recentWrap: {
-    marginTop: 22,
+  metaText: {
+    color: C.muted,
+    fontSize: 11.5,
   },
-  recent: {
+  waitRow: {
+    marginTop: 16,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     gap: 12,
-    paddingVertical: 14,
-    borderTopWidth: 1,
-    borderTopColor: C.border,
+  },
+  waitLabel: {
+    color: C.muted,
+    fontSize: 12,
+  },
+  waitOptions: {
+    flexDirection: 'row',
+    gap: 6,
+  },
+  waitChip: {
+    paddingHorizontal: 11,
+    paddingVertical: 6,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: C.border,
+  },
+  waitChipActive: {
+    borderColor: 'rgba(200,255,77,0.45)',
+    backgroundColor: 'rgba(200,255,77,0.07)',
+  },
+  waitText: {
+    color: C.muted,
+    fontSize: 12,
+  },
+  waitTextActive: {
+    color: C.accent,
+    fontWeight: '600',
+  },
+  addButton: {
+    marginTop: 12,
+    paddingVertical: 16,
+    borderRadius: 999,
+    backgroundColor: C.accent,
+    alignItems: 'center',
+  },
+  addButtonDisabled: {
+    backgroundColor: C.card,
+    borderWidth: 1,
+    borderColor: C.border,
+  },
+  addButtonText: {
+    color: C.accentInk,
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  addButtonTextDisabled: {
+    color: C.muted,
+  },
+  notice: {
+    marginTop: 10,
+    color: C.accent,
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  recent: {
+    marginTop: 32,
+  },
+  recentHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 6,
+  },
+  sectionTitle: {
+    color: C.text,
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  seeAll: {
+    color: C.muted,
+    fontSize: 12,
+  },
+  empty: {
+    marginTop: 10,
+    color: C.muted,
+    fontSize: 12.5,
+    lineHeight: 19,
+  },
+  recentRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 13,
+    borderBottomWidth: 1,
+    borderBottomColor: C.border,
+  },
+  statusDot: {
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+  },
+  statusDotWaiting: {
+    backgroundColor: C.accent,
+  },
+  statusDotSkipped: {
+    backgroundColor: C.accent,
   },
   recentCopy: {
     flex: 1,
   },
   recentName: {
     color: C.text,
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: 13.5,
+    fontWeight: '500',
   },
   recentPrice: {
     marginTop: 2,
     color: C.muted,
-    fontFamily: MONO,
-    fontSize: 10,
+    fontSize: 11,
   },
-  recentHours: {
-    color: C.accent,
-    fontFamily: MONO,
-    fontSize: 12,
-    fontWeight: '700',
+  recentTime: {
+    color: C.text,
+    fontSize: 12.5,
+    fontWeight: '600',
+  },
+  saved: {
+    marginTop: 18,
+    color: C.muted,
+    fontSize: 11.5,
+    textAlign: 'center',
   },
 });
