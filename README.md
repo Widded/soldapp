@@ -61,12 +61,14 @@ Web:
 - `/kayit` — kayıt
 - `/panel` — korumalı kullanıcı paneli
 
-Mobil:
+Mobil (yüzen alt menü):
 
 - `login` — giriş / kayıt
-- `Hesapla` — fiyat → emek çevirici
+- `Ana Sayfa` — fiyat → emek çevirici
 - `Kararlar` — bekleme süresi, al / vazgeç
-- `Ayarlar` — kazanç, saat, yol, premium, çıkış
+- `İstatistik` — toplam kurtarılan saat, karar dağılımı
+- `Keşfet` — yakında gelecek özellikler
+- `Profil` — kazanç, saat, yol, premium, çıkış
 
 ## Tasarım
 

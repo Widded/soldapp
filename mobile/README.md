@@ -20,9 +20,12 @@ Supabase anahtarı yoksa uygulama **demo modunda** çalışır; veriler cihazda
 ## Ekranlar
 
 - `src/app/login.tsx` — giriş / kayıt (Supabase veya demo)
-- `src/app/(tabs)/index.tsx` — hesaplayıcı
+- `src/app/(tabs)/index.tsx` — ana sayfa / hesaplayıcı
 - `src/app/(tabs)/decisions.tsx` — kararlar
-- `src/app/(tabs)/settings.tsx` — ayarlar, premium, çıkış
+- `src/app/(tabs)/stats.tsx` — istatistik
+- `src/app/(tabs)/explore.tsx` — keşfet
+- `src/app/(tabs)/settings.tsx` — profil / ayarlar
+- `src/components/navigation/AppTabBar.tsx` — yüzen, blur'lu alt menü
 
 ## Yapı
 
@@ -32,7 +35,14 @@ Supabase anahtarı yoksa uygulama **demo modunda** çalışır; veriler cihazda
 - `src/lib/auth.tsx` — Supabase auth + demo fallback
 - `src/lib/decisions.ts` / `profile.ts` — bulut veya yerel veri
 - `src/components/ui.tsx` — ortak arayüz bileşenleri
+- `src/components/navigation/AppTabBar.tsx` — 5 sekmeli yüzen alt menü
 - `src/lib/theme.ts` — siyah / beyaz / yeşil tasarım token'ları
+
+## Alt menü
+
+Yüzen, blur'lu bar: **Ana Sayfa · Kararlar · İstatistik · Keşfet · Profil**.
+`expo-blur` + `@expo/vector-icons` (Feather) kullanır. Ekranlar
+`getTabBarHeight()` kadar alt boşluk bırakır.
 
 ## Tip kontrolü
 

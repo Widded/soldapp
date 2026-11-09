@@ -11,7 +11,11 @@ import {
   type TextStyle,
   type ViewStyle,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
+import { getTabBarHeight } from '@/components/navigation/AppTabBar';
 import { C, MONO } from '@/lib/theme';
 
 export function Screen({
@@ -21,6 +25,8 @@ export function Screen({
   children: ReactNode;
   scroll?: boolean;
 }) {
+  const insets = useSafeAreaInsets();
+  const bottomPadding = getTabBarHeight(insets.bottom) + 12;
   const inner = <View style={styles.screenInner}>{children}</View>;
 
   return (
@@ -28,7 +34,10 @@ export function Screen({
       {scroll ? (
         <ScrollView
           style={styles.scroll}
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={[
+            styles.scrollContent,
+            { paddingBottom: bottomPadding },
+          ]}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >

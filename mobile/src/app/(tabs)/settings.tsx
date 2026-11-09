@@ -87,7 +87,10 @@ export default function SettingsScreen() {
         </View>
       ) : null}
 
-      <Mono style={styles.section}>AYARLAR</Mono>
+      <Text style={styles.heading}>Profil</Text>
+      <Text style={styles.sub}>
+        {user && 'email' in user && user.email ? user.email : 'Hesabın'}
+      </Text>
 
       <Card>
         <Field
@@ -124,7 +127,7 @@ export default function SettingsScreen() {
         />
 
         <View style={styles.preview}>
-          <Mono>GERÇEK SAATLİK DEĞERİN</Mono>
+          <Mono>Gerçek saatlik değerin</Mono>
           <Text style={styles.previewValue}>
             {formatTL(realHourlyRate(form))}
           </Text>
@@ -137,7 +140,7 @@ export default function SettingsScreen() {
 
       <View style={styles.block}>
         <Card accent>
-          <Mono>PREMIUM</Mono>
+          <Mono>Premium</Mono>
           <Text style={styles.premiumPrice}>
             ₺49<Text style={styles.premiumPeriod}> / ay</Text>
           </Text>
@@ -156,7 +159,7 @@ export default function SettingsScreen() {
 
       <View style={styles.block}>
         <Card>
-          <Mono>VERİLER</Mono>
+          <Mono>Veriler</Mono>
           <Text style={styles.help}>
             {demo
               ? 'Demo modundasın; veriler sadece bu cihazda tutulur.'
@@ -181,6 +184,20 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
+  heading: {
+    color: C.text,
+    fontSize: 30,
+    fontWeight: '700',
+    letterSpacing: -1.1,
+    lineHeight: 34,
+  },
+  sub: {
+    marginTop: 6,
+    marginBottom: 4,
+    color: C.muted,
+    fontSize: 13,
+    lineHeight: 19,
+  },
   section: {
     marginBottom: 10,
     marginLeft: 2,

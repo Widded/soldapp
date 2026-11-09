@@ -1,21 +1,8 @@
 import { Redirect, Tabs } from 'expo-router';
-import { View, type ColorValue } from 'react-native';
+import { View } from 'react-native';
 import { useAuth } from '@/lib/auth';
-import { C, MONO } from '@/lib/theme';
-
-function Dot({ color }: { color: ColorValue }) {
-  return (
-    <View
-      style={{
-        width: 6,
-        height: 6,
-        borderRadius: 3,
-        backgroundColor: color,
-        marginBottom: 2,
-      }}
-    />
-  );
-}
+import { AppTabBar } from '@/components/navigation/AppTabBar';
+import { C } from '@/lib/theme';
 
 export default function TabsLayout() {
   const { user, loading } = useAuth();
@@ -30,28 +17,14 @@ export default function TabsLayout() {
 
   return (
     <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          backgroundColor: C.card,
-          borderTopColor: C.border,
-          height: 64,
-          paddingTop: 8,
-          paddingBottom: 10,
-        },
-        tabBarActiveTintColor: C.accent,
-        tabBarInactiveTintColor: C.muted,
-        tabBarLabelStyle: {
-          fontFamily: MONO,
-          fontSize: 9,
-          letterSpacing: 0,
-        },
-        tabBarIcon: ({ color }) => <Dot color={color} />,
-      }}
+      screenOptions={{ headerShown: false }}
+      tabBar={(props: any) => <AppTabBar {...props} />}
     >
-      <Tabs.Screen name="index" options={{ title: 'Hesapla' }} />
+      <Tabs.Screen name="index" options={{ title: 'Ana Sayfa' }} />
       <Tabs.Screen name="decisions" options={{ title: 'Kararlar' }} />
-      <Tabs.Screen name="settings" options={{ title: 'Ayarlar' }} />
+      <Tabs.Screen name="stats" options={{ title: 'İstatistik' }} />
+      <Tabs.Screen name="explore" options={{ title: 'Keşfet' }} />
+      <Tabs.Screen name="settings" options={{ title: 'Profil' }} />
     </Tabs>
   );
 }
