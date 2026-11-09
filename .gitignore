@@ -1,6 +1,8 @@
 node_modules/
 dist/
 dist-ssr/
+.expo/
+.expo-shared/
 *.local
 .env
 .env.*
@@ -8,3 +10,8 @@ dist-ssr/
 .DS_Store
 Thumbs.db
 *.log
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision

@@ -1,37 +1,60 @@
 # kaç saat?
 
 Fiyatları ömrüne çeviren mikro uygulama. Maaşını ve çalışma düzenini gir; her
-fiyat etiketinin kaç saatlik emeğine mal olduğunu gör. Karar listesi, bekleme
-süresi ve "kurtardığın saat" takibi ile birlikte.
+fiyat etiketinin kaç saatlik emeğine mal olduğunu gör.
 
-## Çalıştırma
+## Yapı
+
+```
+soldapp/
+  web/      → tanıtım sayfası + giriş + kullanıcı paneli (Vite + React + Supabase)
+  mobile/   → Expo uygulaması (iOS + Android)
+  web/supabase/schema.sql → tablolar ve RLS politikaları
+```
+
+## Web
 
 ```bash
+cd web
 npm install
 npm run dev
 ```
 
-Tarayıcıda `http://localhost:5173` adresini aç.
+Tarayıcıda `http://localhost:5173`.
 
-## Build
+Supabase anahtarları yoksa uygulama **demo modunda** çalışır; veriler
+`localStorage` içinde tutulur. Gerçek hesap ve bulut senkronizasyonu için:
 
 ```bash
-npm run build
-npm run preview
+cp .env.example .env
+# .env içine Supabase URL ve anon key gir
 ```
 
-## Yapı
+### Supabase kurulumu
 
-- `src/components/Onboarding.tsx` — ilk kurulum (kazanç, saat, yol, gün)
-- `src/components/Calculator.tsx` — fiyat → emek çevirici + karar ekleme
-- `src/components/Decisions.tsx` — karar listesi, bekleme süresi, kurtarılan saat
-- `src/components/SettingsView.tsx` — ayarlar + premium teaser
-- `src/lib/calc.ts` — gerçek saatlik değer hesabı
-- `src/lib/storage.ts` — localStorage kalıcılığı
-- `src/lib/format.ts` — TL ve süre biçimlendirme
+1. [supabase.com](https://supabase.com) üzerinde ücretsiz proje aç.
+2. SQL Editor'de `web/supabase/schema.sql` dosyasını çalıştır.
+3. Authentication > Providers > Email açık olsun.
+4. Project Settings > API'den URL ve anon key'i al, `web/.env` dosyasına yaz.
+5. Yeniden başlat: `npm run dev`.
+
+## Mobil
+
+```bash
+cd mobile
+npm install
+npx expo start
+```
+
+## Sayfalar
+
+- `/` — one-page tanıtım (hero, nasıl çalışır, canlı hesaplayıcı, özellikler, fiyat, SSS)
+- `/giris` — giriş
+- `/kayit` — kayıt
+- `/panel` — korumalı kullanıcı paneli (hesaplayıcı, kararlar, ayarlar, istatistikler)
 
 ## Notlar
 
-- Backend yok; tüm veriler tarayıcıda `localStorage` içinde tutulur.
-- PWA manifest hazır; mobilde "Ana ekrana ekle" ile uygulama gibi açılır.
-- Ödeme entegrasyonu henüz yok (premium bölümü teaser).
+- Panel, Supabase yapılandırıldıysa buluta; değilse cihaza yazar.
+- Tüm tablolarda satır düzeyi güvenlik (RLS) açık.
+- Ödeme entegrasyonu henüz yok; Premium bölümü teaser.
