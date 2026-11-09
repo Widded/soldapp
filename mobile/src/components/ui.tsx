@@ -332,7 +332,7 @@ const styles = StyleSheet.create({
     padding: 22,
   },
   cardAccent: {
-    borderColor: 'rgba(200,255,77,0.3)',
+    borderColor: 'rgba(157,187,122,0.35)',
   },
   primaryBtn: {
     backgroundColor: C.accent,
