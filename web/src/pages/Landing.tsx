@@ -1,43 +1,43 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SiteNav } from '../components/SiteNav';
 import { SiteFooter } from '../components/SiteFooter';
 import { formatDuration, formatTL } from '../lib/format';
 
+const TICKER = [
+  '₺15 simit = 7 dakika',
+  '₺120 kahve = 52 dakika',
+  '₺150 Netflix = 1 saat 5 dakika',
+  '₺1.200 spor salonu = 8 saat 42 dakika',
+  '₺24.999 telefon = 18 gün 1 saat',
+  '₺6.000 tatil = 4 gün 3 saat',
+];
+
 const STEPS = [
   {
-    icon: 'clock',
+    no: '01',
     title: 'Kazancını gir',
     text: 'Aylık net maaşın, haftalık saatlerin ve yol süren. Gerçek saatlik değerin saniyeler içinde çıksın.',
   },
   {
-    icon: 'spark',
+    no: '02',
     title: 'Fiyatı sor',
     text: 'Bir şey almak istediğinde fiyatını yaz. Kaç saat, kaç gün, kaç ay olduğunu gör.',
   },
   {
-    icon: 'chart',
+    no: '03',
     title: 'Karar ver',
     text: '24 saat, 3 gün veya 7 gün bekle. Duygu geçince karar ver; vazgeçtiğin her şey kurtardığın saat olur.',
   },
 ];
 
-const FEATURES = [
-  {
-    icon: 'clock',
-    title: 'Gerçek saatlik değer',
-    text: 'Maaş, mesai ve yol süresi dahil. Kendine dürüst bir sayı.',
-  },
-  {
-    icon: 'pause',
-    title: 'Bekleme süresi',
-    text: '24 saat, 3 gün veya 7 gün. Duygu geçsin, sonra karar ver.',
-  },
-  {
-    icon: 'spark',
-    title: 'Kurtardığın saat',
-    text: 'Vazgeçtiğin her alışveriş, geri kazandığın zamandır.',
-  },
+const LEDGER = [
+  { name: 'Simit', price: '₺15', time: '7 dakika' },
+  { name: 'Filtre kahve', price: '₺120', time: '52 dakika' },
+  { name: 'Netflix', price: '₺150', time: '1 saat 5 dk' },
+  { name: 'Spor salonu', price: '₺1.200 / ay', time: '8 saat 42 dk' },
+  { name: 'Yeni telefon', price: '₺24.999', time: '18 gün 1 saat' },
+  { name: 'Hafta sonu tatili', price: '₺6.000', time: '4 gün 3 saat' },
 ];
 
 const FAQ = [
@@ -63,52 +63,17 @@ const FAQ = [
   },
 ];
 
-function FeatureIcon({ name }: { name: string }) {
-  const icons: Record<string, ReactNode> = {
-    clock: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3 2" />
-      </>
-    ),
-    pause: (
-      <>
-        <rect x="7" y="5" width="3" height="14" rx="1" />
-        <rect x="14" y="5" width="3" height="14" rx="1" />
-      </>
-    ),
-    spark: (
-      <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />
-    ),
-    chart: <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />,
-  };
-
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {icons[name] ?? icons.clock}
-    </svg>
-  );
-}
-
 export function Landing() {
   const [income, setIncome] = useState('30000');
   const [price, setPrice] = useState('4499');
 
   const hourly = useMemo(() => {
     const value = Number(income) || 0;
-    return value > 0 ? value / (45 * 4.333) : 0;
+    return value > 0 ? value / (50 * 4.333) : 0;
   }, [income]);
 
   const hours = hourly > 0 ? (Number(price) || 0) / hourly : 0;
-  const duration = formatDuration(hours, 9);
+  const duration = formatDuration(hours, 10);
 
   return (
     <div className="site">
@@ -118,97 +83,109 @@ export function Landing() {
         <section className="hero">
           <div className="hero-inner">
             <div className="hero-copy">
-              <span className="eyebrow">Zaman = para</span>
+              <p className="kicker">SOLD / zamanın fiyatı</p>
               <h1>
-                Fiyatları değil, <em>ömrünü</em> düşün.
+                Fiyatı değil, <em>harcadığın zamanı</em> gör.
               </h1>
               <p className="hero-sub">
                 Maaşını gir. Her alışverişin kaç saatlik emeğine mal olduğunu
                 gör. Karar vermeden önce.
               </p>
+
               <div className="hero-actions">
-                <Link to="/kayit" className="btn btn-primary btn-lg">
-                  Ücretsiz başla
+                <Link to="/kayit" className="btn btn-primary">
+                  Kendi defterini aç
                 </Link>
-                <a href="#nasil" className="btn btn-ghost btn-lg">
-                  Nasıl çalışır?
+                <a href="#defter" className="link-arrow">
+                  Zaman defterine bak <span>→</span>
                 </a>
               </div>
-              <p className="hero-note">
-                Kredi kartı yok · 30 saniyede kurulum · Verilerin sende
-              </p>
+
+              <div className="hero-meta">
+                <span className="meta-item">
+                  <span className="meta-dot" /> Şu an 1 saat ≈{' '}
+                  {formatTL(hourly)}
+                </span>
+                <span className="meta-item">Kredi kartı yok</span>
+                <span className="meta-item">Verilerin sende</span>
+              </div>
             </div>
 
-            <div className="hero-visual">
-              <div className="hero-calc">
-                <div className="hero-calc-head">
-                  <span className="live-dot" />
-                  Canlı hesaplama
+            <div className="hero-card">
+              <div className="hero-card-top">
+                <span>Örnek hesap</span>
+                <span>01 / 02</span>
+              </div>
+
+              <label className="hero-field">
+                <span>Aylık net kazanç</span>
+                <div className="hero-input">
+                  <span>₺</span>
+                  <input
+                    inputMode="numeric"
+                    value={income}
+                    onChange={(event) =>
+                      setIncome(event.target.value.replace(/[^\d]/g, ''))
+                    }
+                  />
                 </div>
+              </label>
 
-                <label className="hero-calc-field">
-                  <span>Aylık net kazanç</span>
-                  <div className="hero-calc-input">
-                    <span>₺</span>
-                    <input
-                      inputMode="numeric"
-                      value={income}
-                      onChange={(event) =>
-                        setIncome(event.target.value.replace(/[^\d]/g, ''))
-                      }
-                    />
-                  </div>
-                </label>
-
-                <label className="hero-calc-field">
-                  <span>Almak istediğin şey</span>
-                  <div className="hero-calc-input">
-                    <span>₺</span>
-                    <input
-                      inputMode="numeric"
-                      value={price}
-                      onChange={(event) =>
-                        setPrice(event.target.value.replace(/[^\d]/g, ''))
-                      }
-                    />
-                  </div>
-                </label>
-
-                <div className="hero-calc-result">
-                  <span>Bu, senin</span>
-                  <strong className="hero-calc-value">{duration}</strong>
-                  <span>emeğin.</span>
+              <label className="hero-field">
+                <span>Almak istediğin şey</span>
+                <div className="hero-input">
+                  <span>₺</span>
+                  <input
+                    inputMode="numeric"
+                    value={price}
+                    onChange={(event) =>
+                      setPrice(event.target.value.replace(/[^\d]/g, ''))
+                    }
+                  />
                 </div>
+              </label>
 
-                <div className="hero-calc-meta">
-                  <span>Saatlik değerin {formatTL(hourly)}</span>
-                  <span>1 iş günü 9 saat</span>
-                </div>
+              <div className="hero-result">
+                <span>Bu, senin</span>
+                <strong>{duration}</strong>
+                <span>emeğin.</span>
+              </div>
 
-                <Link to="/kayit" className="btn btn-primary hero-calc-cta">
-                  Kendi hesabını oluştur
-                </Link>
+              <div className="hero-card-foot">
+                <span>Saatlik değerin {formatTL(hourly)}</span>
+                <Link to="/kayit">Kendi hesabını oluştur →</Link>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="nasil" className="section">
+        <div className="ticker" aria-hidden="true">
+          <div className="ticker-track">
+            {[...TICKER, ...TICKER].map((item, index) => (
+              <span className="ticker-item" key={`${item}-${index}`}>
+                {item}
+                <i>·</i>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <section id="nasil" className="section how">
           <div className="section-head">
-            <span className="eyebrow">Nasıl çalışır</span>
-            <h2>Üç adımda, gerçek maliyeti gör.</h2>
+            <div>
+              <p className="kicker">Nasıl çalışır</p>
+              <h2>Üç adım. Tek soru.</h2>
+            </div>
             <p>
               Karmaşık bütçe tabloları yok. Sadece bir soru: bu, kaç saatlik
               emeğim?
             </p>
           </div>
 
-          <div className="steps">
+          <div className="how-grid">
             {STEPS.map((step) => (
-              <div className="step" key={step.title}>
-                <div className="step-icon">
-                  <FeatureIcon name={step.icon} />
-                </div>
+              <div className="how-step" key={step.no}>
+                <span className="how-no">{step.no}</span>
                 <h3>{step.title}</h3>
                 <p>{step.text}</p>
               </div>
@@ -216,46 +193,66 @@ export function Landing() {
           </div>
         </section>
 
-        <section id="ozellikler" className="section">
+        <section id="defter" className="section ledger-section">
           <div className="section-head">
-            <span className="eyebrow">Özellikler</span>
-            <h2>Harcamayı değil, hayatını düşün.</h2>
-            <p>
-              Her şey tek bir soruya hizmet ediyor: bu, gerçekten buna değer mi?
+            <div>
+              <p className="kicker">Zaman defteri</p>
+              <h2>Bazı fiyatlar kaç saat eder?</h2>
+            </div>
+            <p className="ledger-note">
+              ₺30.000 net maaş, haftada 45 saat ve günde 1 saat yol varsayımıyla.
             </p>
           </div>
 
-          <div className="features">
-            {FEATURES.map((feature) => (
-              <div className="feature" key={feature.title}>
-                <div className="feature-icon">
-                  <FeatureIcon name={feature.icon} />
-                </div>
-                <h3>{feature.title}</h3>
-                <p>{feature.text}</p>
+          <div className="ledger">
+            <div className="ledger-row ledger-header">
+              <span>Ürün</span>
+              <span>Fiyat</span>
+              <span>SOLD’da</span>
+            </div>
+            {LEDGER.map((item) => (
+              <div className="ledger-row" key={item.name}>
+                <span className="ledger-name">{item.name}</span>
+                <span className="ledger-price">{item.price}</span>
+                <span className="ledger-time">{item.time}</span>
               </div>
             ))}
           </div>
         </section>
 
-        <section id="fiyat" className="section">
+        <section className="manifesto">
+          <div className="manifesto-inner">
+            <p className="kicker kicker-light">Manifesto</p>
+            <h2>
+              Her fiyat etiketi, <em>ödenmemiş bir zaman borcudur.</em>
+            </h2>
+            <p>
+              SOLD bu borcu görünür kılar. Bir şeyin gerçek maliyeti cüzdanındaki
+              para değil, ona harcadığın ömürdür.
+            </p>
+            <Link to="/kayit" className="btn btn-cream">
+              Kendi defterini aç
+            </Link>
+          </div>
+        </section>
+
+        <section id="fiyat" className="section pricing">
           <div className="section-head">
-            <span className="eyebrow">Fiyat</span>
-            <h2>Başlamak ücretsiz.</h2>
+            <div>
+              <p className="kicker">Fiyat</p>
+              <h2>Başlamak ücretsiz.</h2>
+            </div>
             <p>
               Temel ihtiyaçlar için ücretsiz sürüm yeterli. Daha fazlası için
               aylık bir kahve fiyatı.
             </p>
           </div>
 
-          <div className="pricing-grid">
-            <div className="price-card">
-              <div className="price-top">
-                <span className="price-name">Ücretsiz</span>
-              </div>
-              <div className="price-amount">
-                <strong>₺0</strong>
-                <span>sonsuza kadar</span>
+          <div className="pricing-strip">
+            <div className="plan">
+              <div className="plan-head">
+                <h3>Ücretsiz</h3>
+                <span className="plan-price">₺0</span>
               </div>
               <ul>
                 <li>3 aktif karar</li>
@@ -264,18 +261,16 @@ export function Landing() {
                 <li>Kurtardığın saat takibi</li>
               </ul>
               <Link to="/kayit" className="btn btn-ghost">
-                Ücretsiz başla
+                Başla
               </Link>
             </div>
 
-            <div className="price-card highlight">
-              <div className="price-top">
-                <span className="price-name">Premium</span>
-                <span className="price-badge">Popüler</span>
-              </div>
-              <div className="price-amount">
-                <strong>₺49</strong>
-                <span>/ ay</span>
+            <div className="plan plan-premium">
+              <div className="plan-head">
+                <h3>Premium</h3>
+                <span className="plan-price">
+                  ₺49 <small>/ ay</small>
+                </span>
               </div>
               <ul>
                 <li>Sınırsız karar</li>
@@ -291,33 +286,43 @@ export function Landing() {
           </div>
         </section>
 
-        <section id="sss" className="section">
-          <div className="section-head">
-            <span className="eyebrow">SSS</span>
-            <h2>Merak edilenler.</h2>
-          </div>
+        <section id="sss" className="section faq-section">
+          <div className="faq-grid">
+            <div className="faq-intro">
+              <p className="kicker">SSS</p>
+              <h2>Merak edilenler.</h2>
+              <p>
+                Aklına takılan başka bir şey varsa{' '}
+                <a href="mailto:destek@sold.app">destek@sold.app</a> adresine
+                yaz.
+              </p>
+            </div>
 
-          <div className="faq">
-            {FAQ.map((item) => (
-              <details className="faq-item" key={item.q}>
-                <summary>{item.q}</summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
+            <div className="faq">
+              {FAQ.map((item) => (
+                <details className="faq-item" key={item.q}>
+                  <summary>{item.q}</summary>
+                  <p>{item.a}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 
         <section className="final-cta">
-          <h2>
-            Bir sonraki alışverişinde, ömründen kaç saat gittiğini bil.
-          </h2>
-          <div className="hero-actions">
-            <Link to="/kayit" className="btn btn-primary btn-lg">
-              Ücretsiz başla
-            </Link>
-            <Link to="/giris" className="btn btn-ghost btn-lg">
-              Giriş yap
-            </Link>
+          <div className="final-cta-inner">
+            <p className="kicker">Karar senin</p>
+            <h2>
+              Bir sonraki alışverişinde, ömründen kaç saat gittiğini bil.
+            </h2>
+            <div className="hero-actions">
+              <Link to="/kayit" className="btn btn-primary btn-lg">
+                Ücretsiz başla
+              </Link>
+              <Link to="/giris" className="btn btn-ghost btn-lg">
+                Giriş yap
+              </Link>
+            </div>
           </div>
         </section>
       </main>

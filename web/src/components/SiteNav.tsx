@@ -19,8 +19,8 @@ export function SiteNav() {
           <a href="#nasil" onClick={close}>
             Nasıl çalışır
           </a>
-          <a href="#ozellikler" onClick={close}>
-            Özellikler
+          <a href="#defter" onClick={close}>
+            Zaman defteri
           </a>
           <a href="#fiyat" onClick={close}>
             Fiyat

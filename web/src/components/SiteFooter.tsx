@@ -15,7 +15,7 @@ export function SiteFooter() {
           <div>
             <h4>Ürün</h4>
             <a href="#nasil">Nasıl çalışır</a>
-            <a href="#ozellikler">Özellikler</a>
+            <a href="#defter">Zaman defteri</a>
             <a href="#fiyat">Fiyat</a>
           </div>
           <div>
