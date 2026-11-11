@@ -4,13 +4,6 @@ import { SiteNav } from '../components/SiteNav';
 import { SiteFooter } from '../components/SiteFooter';
 import { formatDuration, formatTL } from '../lib/format';
 
-const TICKER = [
-  '₺15 simit = 7 dakika',
-  '₺120 kahve = 52 dakika',
-  '₺24.999 telefon = 18 gün',
-  '₺6.000 tatil = 4 gün',
-];
-
 const STEPS = [
   {
     no: '01',
@@ -150,17 +143,6 @@ export function Landing() {
             </div>
           </div>
         </section>
-
-        <div className="ticker" aria-hidden="true">
-          <div className="ticker-track">
-            {[...TICKER, ...TICKER].map((item, index) => (
-              <span className="ticker-item" key={`${item}-${index}`}>
-                {item}
-                <i>·</i>
-              </span>
-            ))}
-          </div>
-        </div>
 
         <section id="nasil" className="section loop-section">
           <div className="section-head">

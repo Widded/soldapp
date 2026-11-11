@@ -3,6 +3,9 @@
    Siyah tonları: #050505 · #111111 · #1C1C1C · #EDEDED
    Zemin siyah, yüzeyler grafit, metin kemik beyazı.
    Renk yalnızca durum (hata) için kullanılır.
+
+   Not: landing UI'ı redesign.css dosyasında katmanlanır.
+   Landing'e dokunurken önce redesign.css'e bak.
    ============================================================ */
 
 :root {
