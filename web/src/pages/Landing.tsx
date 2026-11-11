@@ -18,7 +18,7 @@ const STEPS = [
   {
     no: '03',
     title: 'Karar ver',
-    text: 'Aldım ya da vazgeçtim. İkisi de kaydedilir.',
+    text: 'Aldım ya da vazgeçtim; ikisi de kaydedilir.',
   },
   {
     no: '04',
@@ -50,24 +50,6 @@ const FAQ = [
   },
 ];
 
-const FEATURES = [
-  {
-    no: '01',
-    title: 'Canlı hesap',
-    text: 'Fiyatı yaz, saatini anında gör.',
-  },
-  {
-    no: '02',
-    title: 'Karar defteri',
-    text: 'Aldım ya da vazgeçtim; ikisi de kayıtta kalır.',
-  },
-  {
-    no: '03',
-    title: 'Biriken zaman',
-    text: 'Vazgeçtiğin her şey saat olarak birikir.',
-  },
-];
-
 export function Landing() {
   const [income, setIncome] = useState('30000');
   const [price, setPrice] = useState('4499');
@@ -81,294 +63,325 @@ export function Landing() {
   const duration = formatDuration(hours, 10);
 
   return (
-    <div className="lp">
+    <div className="sz">
       <SiteNav />
 
-      <main className="lp-main">
-        <section className="lp-hero">
-          <div className="lp-hero-copy">
-            <p className="lp-kicker">Zaman ekstresi / 2026</p>
-            <h1>
-              Fiyatı değil,
-              <br />
-              <em>zamanı</em> gör.
-            </h1>
-            <p className="lp-lead">
-              Maaşını gir. Her alışverişin kaç saatlik emeğine mal olduğunu
-              gör.
-            </p>
+      <main>
+        <section className="sz-hero">
+          <span className="sz-badge">
+            <i />
+            Zaman = para · iOS &amp; Android yakında
+          </span>
 
-            <div className="lp-hero-actions">
-              <Link to="/kayit" className="lp-btn lp-btn-solid">
-                Kendi defterini aç
-              </Link>
-              <a href="#akis" className="lp-btn lp-btn-line">
-                Nasıl çalışır?
-              </a>
-            </div>
+          <h1>
+            Fiyatı değil,
+            <br />
+            <em>zamanı</em> gör.
+          </h1>
 
-            <p className="lp-meta">
-              Web şimdi · iOS &amp; Android yakında · reklam yok
-            </p>
+          <p className="sz-hero-sub">
+            Maaşını gir. Her alışverişin kaç saatlik emeğine mal olduğunu gör.
+          </p>
+
+          <div className="sz-hero-actions">
+            <Link to="/kayit" className="sz-btn sz-btn-primary">
+              Kendi defterini aç
+            </Link>
+            <a href="#nasil" className="sz-btn sz-btn-ghost">
+              Nasıl çalışır?
+            </a>
           </div>
 
-          <div className="lp-statement">
-            <div className="lp-statement-head">
-              <span>Canlı hesap</span>
-              <span>01 / 2026</span>
-            </div>
+          <p className="sz-hero-note">Reklam yok · Verilerin sende</p>
 
-            <label className="lp-row">
-              <span className="lp-row-label">Aylık net kazanç</span>
-              <span className="lp-row-value">
-                <span>₺</span>
-                <input
-                  inputMode="numeric"
-                  size={5}
-                  value={income}
-                  onChange={(event) =>
-                    setIncome(event.target.value.replace(/[^\d]/g, ''))
-                  }
-                />
+          <div className="sz-window">
+            <div className="sz-window-bar">
+              <span className="sz-window-dots">
+                <i />
+                <i />
+                <i />
               </span>
-            </label>
-
-            <label className="lp-row">
-              <span className="lp-row-label">Almak istediğin şey</span>
-              <span className="lp-row-value">
-                <span>₺</span>
-                <input
-                  inputMode="numeric"
-                  size={5}
-                  value={price}
-                  onChange={(event) =>
-                    setPrice(event.target.value.replace(/[^\d]/g, ''))
-                  }
-                />
-              </span>
-            </label>
-
-            <div className="lp-row lp-row-plain">
-              <span className="lp-row-label">Saatlik değerin</span>
-              <span className="lp-row-value lp-row-value-small">
-                {formatTL(hourly)}
+              <span className="sz-window-url">sold.app / hesapla</span>
+              <span className="sz-window-live">
+                <i />
+                Canlı
               </span>
             </div>
 
-            <div className="lp-result">
-              <span className="lp-result-label">Karşılığı</span>
-              <strong>{duration}</strong>
-              <span className="lp-result-note">emeğin.</span>
-            </div>
-
-            <div className="lp-barcode" aria-hidden="true" />
-
-            <div className="lp-statement-foot">
-              <span>SOLD / Zaman = para</span>
-              <Link to="/kayit">Kendi hesabını oluştur →</Link>
-            </div>
-          </div>
-        </section>
-
-        <section id="akis" className="lp-entry">
-          <aside className="lp-rail">
-            <span className="lp-no">01</span>
-            <span className="lp-rail-label">Akış</span>
-          </aside>
-          <div className="lp-body">
-            <h2>Bir fiyat, bir süre.</h2>
-            <p>Dört adımda parayı zaman gibi oku.</p>
-
-            <div className="lp-steps">
-              {STEPS.map((step) => (
-                <div className="lp-step" key={step.no}>
-                  <span className="lp-step-no">{step.no}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
+            <div className="sz-window-body">
+              <aside className="sz-app-side">
+                <span className="sz-app-logo">SOLD.</span>
+                <div className="sz-app-nav">
+                  <span className="active">Hesapla</span>
+                  <span>Kararlar</span>
+                  <span>İstatistik</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+                <div className="sz-app-side-foot">
+                  <span>Saatlik değer</span>
+                  <strong>{formatTL(hourly)}</strong>
+                </div>
+              </aside>
 
-        <section id="defter" className="lp-entry">
-          <aside className="lp-rail">
-            <span className="lp-no">02</span>
-            <span className="lp-rail-label">Defter</span>
-          </aside>
-          <div className="lp-body">
-            <h2>Bazı fiyatlar kaç saat eder?</h2>
-            <p>₺30.000 net maaş, haftada 45 saat ve günde 1 saat yol ile.</p>
+              <div className="sz-app-main">
+                <div className="sz-app-head">
+                  <div>
+                    <span className="sz-app-kicker">Canlı hesap</span>
+                    <h2>Bugün ne alacaksın?</h2>
+                  </div>
+                  <span className="sz-app-tag">01 / 2026</span>
+                </div>
 
-            <div className="lp-ledger">
-              <div className="lp-ledger-row lp-ledger-head">
-                <span>Ürün</span>
-                <span>Fiyat</span>
-                <span className="lp-ledger-time">SOLD’da</span>
+                <div className="sz-app-fields">
+                  <label className="sz-field">
+                    <span>Aylık net kazanç</span>
+                    <div>
+                      <span>₺</span>
+                      <input
+                        inputMode="numeric"
+                        size={5}
+                        value={income}
+                        onChange={(event) =>
+                          setIncome(event.target.value.replace(/[^\d]/g, ''))
+                        }
+                      />
+                    </div>
+                  </label>
+
+                  <label className="sz-field">
+                    <span>Almak istediğin şey</span>
+                    <div>
+                      <span>₺</span>
+                      <input
+                        inputMode="numeric"
+                        size={5}
+                        value={price}
+                        onChange={(event) =>
+                          setPrice(event.target.value.replace(/[^\d]/g, ''))
+                        }
+                      />
+                    </div>
+                  </label>
+                </div>
+
+                <div className="sz-app-result">
+                  <span>Bu, senin</span>
+                  <strong>{duration}</strong>
+                  <span>emeğin.</span>
+                </div>
+
+                <div className="sz-app-foot">
+                  <span>Saatlik değerin {formatTL(hourly)}</span>
+                  <Link to="/kayit">Deftere ekle →</Link>
+                </div>
               </div>
-              {LEDGER.map((item) => (
-                <div className="lp-ledger-row" key={item.name}>
-                  <span className="lp-ledger-name">{item.name}</span>
-                  <span className="lp-ledger-price">{item.price}</span>
-                  <span className="lp-ledger-time">{item.time}</span>
-                </div>
-              ))}
             </div>
           </div>
         </section>
 
-        <section id="uygulama" className="lp-entry">
-          <aside className="lp-rail">
-            <span className="lp-no">03</span>
-            <span className="lp-rail-label">Uygulama</span>
-          </aside>
-          <div className="lp-body">
-            <h2>Bütün kararların, tek defterde.</h2>
-            <p>Fiyatı yaz, saatini gör, karar ver.</p>
+        <section id="nasil" className="sz-section">
+          <div className="sz-section-head">
+            <span className="sz-label">
+              <i />
+              Nasıl çalışır
+            </span>
+            <h2>Dört adım. Tek soru.</h2>
+            <p>
+              “Bu, kaç saatlik emeğim?” Bütün uygulama bu soruya hizmet ediyor.
+            </p>
+          </div>
 
-            <div className="lp-app">
-              <div className="lp-app-copy">
-                {FEATURES.map((feature) => (
-                  <div className="lp-feature" key={feature.no}>
-                    <span className="lp-feature-label">
-                      {feature.no} / {feature.title}
-                    </span>
-                    <p>{feature.text}</p>
+          <div className="sz-steps">
+            {STEPS.map((step) => (
+              <div className="sz-step" key={step.no}>
+                <span className="sz-step-no">{step.no}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="ozellikler" className="sz-section">
+          <div className="sz-section-head">
+            <span className="sz-label">
+              <i />
+              Özellikler
+            </span>
+            <h2>Karar vermeden önce, zamanı gör.</h2>
+            <p>Fiyatı yaz, saatini gör, karar ver.</p>
+          </div>
+
+          <div className="sz-bento">
+            <article className="sz-card sz-card-result">
+              <div className="sz-card-top">
+                <span>Canlı sonuç</span>
+                <IconClock />
+              </div>
+              <strong>3 gün 2 saat</strong>
+              <p>₺4.499, senin 3 gün 2 saatlik emeğin.</p>
+            </article>
+
+            <article className="sz-card">
+              <div className="sz-card-icon">
+                <IconList />
+              </div>
+              <span className="sz-card-label">Karar defteri</span>
+              <p>Aldım ya da vazgeçtim; her karar kayıtta kalır.</p>
+              <div className="sz-mini-row">
+                <span>Yeni telefon</span>
+                <b>18 gün</b>
+              </div>
+            </article>
+
+            <article className="sz-card">
+              <div className="sz-card-icon">
+                <IconChart />
+              </div>
+              <span className="sz-card-label">Kurtarılan zaman</span>
+              <div className="sz-progress">
+                <i />
+              </div>
+              <p>Bu ay 14 saat kurtardın.</p>
+            </article>
+
+            <article className="sz-card">
+              <div className="sz-card-icon">
+                <IconClock />
+              </div>
+              <span className="sz-card-label">Bekleme süresi</span>
+              <div className="sz-chips">
+                <span>24 saat</span>
+                <span>3 gün</span>
+                <span>7 gün</span>
+              </div>
+              <p>Duygu geçsin, acele karar verme.</p>
+            </article>
+
+            <article className="sz-card">
+              <div className="sz-card-icon">
+                <IconShield />
+              </div>
+              <span className="sz-card-label">Veriler sende</span>
+              <p>Hesap açmazsan her şey cihazında kalır. Reklam yok.</p>
+            </article>
+
+            <article className="sz-card sz-card-ledger">
+              <div className="sz-card-top">
+                <span>Zaman defteri</span>
+                <span>Örnek</span>
+              </div>
+              <div className="sz-mini-table">
+                <div className="sz-mini-table-head">
+                  <span>Ürün</span>
+                  <span>Fiyat</span>
+                  <span>SOLD’da</span>
+                </div>
+                {LEDGER.slice(0, 3).map((item) => (
+                  <div className="sz-mini-table-row" key={item.name}>
+                    <span>{item.name}</span>
+                    <span>{item.price}</span>
+                    <b>{item.time}</b>
                   </div>
                 ))}
               </div>
-
-              <div className="lp-phone">
-                <div className="lp-phone-screen">
-                  <div className="lp-phone-top">
-                    <span>SOLD.</span>
-                    <span>₺138/saat</span>
-                  </div>
-                  <div className="lp-phone-title">Bugün ne alacaksın?</div>
-                  <div className="lp-phone-price">₺4.499</div>
-                  <div className="lp-phone-result">3 gün 6 saat</div>
-                  <div className="lp-phone-note">emeğin.</div>
-                  <div className="lp-phone-btn">Karar listesine ekle</div>
-
-                  <div className="lp-phone-rows">
-                    <div className="lp-phone-row">
-                      <span>Yeni telefon</span>
-                      <b>18 gün</b>
-                    </div>
-                    <div className="lp-phone-row">
-                      <span>Hafta sonu tatili</span>
-                      <b>4 gün</b>
-                    </div>
-                    <div className="lp-phone-row">
-                      <span>Filtre kahve</span>
-                      <b>52 dk</b>
-                    </div>
-                  </div>
-
-                  <div className="lp-phone-total">
-                    Bu ay <b>0 saat</b> kurtardın.
-                  </div>
-                </div>
-              </div>
-            </div>
+            </article>
           </div>
         </section>
 
-        <section id="fiyat" className="lp-entry">
-          <aside className="lp-rail">
-            <span className="lp-no">04</span>
-            <span className="lp-rail-label">Fiyat</span>
-          </aside>
-          <div className="lp-body">
+        <section id="fiyat" className="sz-section">
+          <div className="sz-section-head">
+            <span className="sz-label">
+              <i />
+              Fiyat
+            </span>
             <h2>Başlamak ücretsiz.</h2>
             <p>Daha fazlası ayda bir kahve fiyatına.</p>
-
-            <div className="lp-plans">
-              <div className="lp-plan">
-                <div className="lp-plan-top">
-                  <span className="lp-plan-label">Ücretsiz</span>
-                  <span className="lp-plan-price">₺0</span>
-                </div>
-                <ul className="lp-plan-list">
-                  <li>3 aktif karar</li>
-                  <li>Temel hesaplayıcı</li>
-                  <li>Cihazda saklama</li>
-                </ul>
-                <Link to="/kayit" className="lp-btn lp-btn-line">
-                  Başla
-                </Link>
-              </div>
-
-              <div className="lp-plan lp-plan-featured">
-                <div className="lp-plan-top">
-                  <span className="lp-plan-label">
-                    Premium <i>Yakında</i>
-                  </span>
-                  <span className="lp-plan-price">
-                    ₺49 <small>/ay</small>
-                  </span>
-                </div>
-                <ul className="lp-plan-list">
-                  <li>Sınırsız karar</li>
-                  <li>Bulut ve haftalık rapor</li>
-                  <li>Widget ve öncelikli destek</li>
-                </ul>
-                <Link to="/kayit" className="lp-btn lp-btn-solid">
-                  Erken erişim
-                </Link>
-              </div>
-            </div>
-
-            <p className="lp-plan-note">İlk 7 gün koşulsuz iade.</p>
           </div>
+
+          <div className="sz-plans">
+            <article className="sz-plan">
+              <div className="sz-plan-head">
+                <span>Ücretsiz</span>
+                <strong>₺0</strong>
+              </div>
+              <ul>
+                <li>3 aktif karar</li>
+                <li>Temel hesaplayıcı</li>
+                <li>Cihazda saklama</li>
+              </ul>
+              <Link to="/kayit" className="sz-btn sz-btn-ghost">
+                Başla
+              </Link>
+            </article>
+
+            <article className="sz-plan sz-plan-featured">
+              <div className="sz-plan-head">
+                <span>
+                  Premium <i>Yakında</i>
+                </span>
+                <strong>
+                  ₺49 <small>/ay</small>
+                </strong>
+              </div>
+              <ul>
+                <li>Sınırsız karar</li>
+                <li>Bulut ve haftalık rapor</li>
+                <li>Widget ve öncelikli destek</li>
+              </ul>
+              <Link to="/kayit" className="sz-btn sz-btn-dark">
+                Erken erişim
+              </Link>
+            </article>
+          </div>
+
+          <p className="sz-plan-note">İlk 7 gün koşulsuz iade.</p>
         </section>
 
-        <section id="sss" className="lp-entry">
-          <aside className="lp-rail">
-            <span className="lp-no">05</span>
-            <span className="lp-rail-label">SSS</span>
-          </aside>
-          <div className="lp-body">
+        <section id="sss" className="sz-section">
+          <div className="sz-section-head">
+            <span className="sz-label">
+              <i />
+              SSS
+            </span>
             <h2>Kısa sorular, kısa cevaplar.</h2>
             <p>
               Başka sorun varsa{' '}
               <a href="mailto:destek@sold.app">destek@sold.app</a> adresine yaz.
             </p>
+          </div>
 
-            <div className="lp-faq">
-              {FAQ.map((item) => (
-                <details key={item.q}>
-                  <summary>{item.q}</summary>
-                  <p>{item.a}</p>
-                </details>
-              ))}
-            </div>
+          <div className="sz-faq">
+            {FAQ.map((item) => (
+              <details className="sz-faq-item" key={item.q}>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
           </div>
         </section>
 
-        <section className="lp-close">
-          <div className="lp-close-inner">
-            <div className="lp-close-copy">
-              <span className="lp-close-label">06 / Karar</span>
+        <section className="sz-cta">
+          <div className="sz-cta-panel">
+            <div className="sz-cta-copy">
+              <span className="sz-label sz-label-dark">
+                <i />
+                Karar
+              </span>
               <h2>
                 Fiyat girildi.
                 <br />
                 <em>Zaman geri geldi.</em>
               </h2>
               <p>Bir sonraki alışverişinde kaç saat harcadığını bil.</p>
-              <div className="lp-cta-row">
-                <Link to="/kayit" className="lp-btn lp-btn-solid">
-                  Ücretsiz başla
-                </Link>
-                <Link to="/giris" className="lp-btn lp-btn-line">
-                  Giriş yap
-                </Link>
-              </div>
             </div>
 
-            <div className="lp-stamp">
-              <strong>SOLD.</strong>
-              <span>Zaman sende</span>
+            <div className="sz-cta-actions">
+              <Link to="/kayit" className="sz-btn sz-btn-dark">
+                Ücretsiz başla
+              </Link>
+              <Link to="/giris" className="sz-btn sz-btn-outline">
+                Giriş yap
+              </Link>
             </div>
           </div>
         </section>
@@ -376,5 +389,72 @@ export function Landing() {
 
       <SiteFooter />
     </div>
+  );
+}
+
+function IconClock() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3.2 2" />
+    </svg>
+  );
+}
+
+function IconList() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M9 7h10M9 12h10M9 17h10" />
+      <path d="M5 7h.01M5 12h.01M5 17h.01" />
+    </svg>
+  );
+}
+
+function IconChart() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 19V9M12 19V5M19 19v-7" />
+    </svg>
+  );
+}
+
+function IconShield() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 3.5 19 6v5.5c0 4.2-2.9 7.4-7 9-4.1-1.6-7-4.8-7-9V6l7-2.5Z" />
+      <path d="m9.5 12 1.7 1.7 3.3-3.4" />
+    </svg>
   );
 }

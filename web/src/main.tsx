@@ -1,5 +1,5 @@
-import '@fontsource-variable/archivo';
-import '@fontsource-variable/instrument-sans';
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/work-sans';
 import '@fontsource-variable/geist-mono';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -8,7 +8,7 @@ import { AuthProvider } from './lib/auth';
 import App from './App';
 import './index.css';
 import './landing.css';
-import './landing-v2.css';
+import './landing-v3.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

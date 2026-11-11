@@ -11,21 +11,18 @@ export function SiteNav() {
   const anchor = (id: string) => (pathname === '/' ? `#${id}` : `/#${id}`);
 
   return (
-    <header className="lp-nav">
-      <div className="lp-nav-inner">
-        <Link to="/" className="lp-logo" onClick={close}>
+    <header className="sz-nav">
+      <div className="sz-nav-inner">
+        <Link to="/" className="sz-logo" onClick={close}>
           SOLD<span>.</span>
         </Link>
 
-        <nav className={open ? 'lp-links open' : 'lp-links'}>
-          <a href={anchor('akis')} onClick={close}>
-            Akış
+        <nav className={open ? 'sz-links open' : 'sz-links'}>
+          <a href={anchor('nasil')} onClick={close}>
+            Nasıl çalışır
           </a>
-          <a href={anchor('defter')} onClick={close}>
-            Defter
-          </a>
-          <a href={anchor('uygulama')} onClick={close}>
-            Uygulama
+          <a href={anchor('ozellikler')} onClick={close}>
+            Özellikler
           </a>
           <a href={anchor('fiyat')} onClick={close}>
             Fiyat
@@ -35,17 +32,17 @@ export function SiteNav() {
           </a>
         </nav>
 
-        <div className="lp-nav-actions">
+        <div className="sz-nav-actions">
           {user ? (
-            <Link to="/panel" className="lp-btn lp-btn-solid lp-btn-sm">
+            <Link to="/panel" className="sz-btn sz-btn-primary sz-btn-sm">
               Panele git
             </Link>
           ) : (
             <>
-              <Link to="/giris" className="lp-btn lp-btn-line lp-btn-sm">
+              <Link to="/giris" className="sz-btn sz-btn-ghost sz-btn-sm">
                 Giriş
               </Link>
-              <Link to="/kayit" className="lp-btn lp-btn-solid lp-btn-sm">
+              <Link to="/kayit" className="sz-btn sz-btn-primary sz-btn-sm">
                 Başla
               </Link>
             </>
@@ -54,7 +51,7 @@ export function SiteNav() {
 
         <button
           type="button"
-          className="lp-burger"
+          className="sz-burger"
           aria-label="Menüyü aç"
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}

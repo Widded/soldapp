@@ -5,20 +5,20 @@ export function SiteFooter() {
   const anchor = (id: string) => (pathname === '/' ? `#${id}` : `/#${id}`);
 
   return (
-    <footer className="lp-footer">
-      <div className="lp-footer-inner">
-        <div className="lp-footer-brand">
-          <Link to="/" className="lp-logo lp-logo-lg">
+    <footer className="sz-footer">
+      <div className="sz-footer-inner">
+        <div className="sz-footer-brand">
+          <Link to="/" className="sz-logo sz-logo-lg">
             SOLD<span>.</span>
           </Link>
           <p>Fiyatları ömrüne çevir. Az tüket, çok yaşa.</p>
         </div>
 
-        <div className="lp-footer-cols">
+        <div className="sz-footer-cols">
           <div>
             <h4>Ürün</h4>
-            <a href={anchor('akis')}>Akış</a>
-            <a href={anchor('defter')}>Defter</a>
+            <a href={anchor('nasil')}>Nasıl çalışır</a>
+            <a href={anchor('ozellikler')}>Özellikler</a>
             <a href={anchor('fiyat')}>Fiyat</a>
           </div>
           <div>
@@ -36,7 +36,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="lp-footer-bottom">
+      <div className="sz-footer-bottom">
         <span>© 2026 SOLD. Tüm hakları saklıdır.</span>
         <span>İstanbul'da yapıldı.</span>
       </div>

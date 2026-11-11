@@ -4,7 +4,7 @@
    Zemin siyah, yüzeyler grafit, metin kemik beyazı.
    Renk yalnızca durum (hata) için kullanılır.
 
-   Not: yeni landing UI'ı landing-v2.css dosyasındadır.
+   Not: yeni landing UI'ı landing-v3.css dosyasındadır.
    Bu dosyadaki eski landing stilleri auth/panel ile paylaşılan
    temel sınıflar için korunur.
    ============================================================ */
@@ -31,10 +31,10 @@
   --danger: #e07a5f;
   --radius: 18px;
   --radius-sm: 12px;
-  --display: 'Archivo Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  --display: 'Outfit Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, sans-serif;
-  --body: 'Instrument Sans Variable', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, sans-serif;
+  --body: 'Work Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif;
   --mono: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
   --font: var(--body);
 }
