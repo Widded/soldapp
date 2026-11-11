@@ -4,8 +4,9 @@
    Zemin siyah, yüzeyler grafit, metin kemik beyazı.
    Renk yalnızca durum (hata) için kullanılır.
 
-   Not: landing UI'ı redesign.css dosyasında katmanlanır.
-   Landing'e dokunurken önce redesign.css'e bak.
+   Not: yeni landing UI'ı landing-v2.css dosyasındadır.
+   Bu dosyadaki eski landing stilleri auth/panel ile paylaşılan
+   temel sınıflar için korunur.
    ============================================================ */
 
 :root {

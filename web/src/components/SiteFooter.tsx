@@ -1,22 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export function SiteFooter() {
+  const { pathname } = useLocation();
+  const anchor = (id: string) => (pathname === '/' ? `#${id}` : `/#${id}`);
+
   return (
-    <footer className="site-footer">
-      <div className="footer-inner">
-        <div className="footer-brand">
-          <div className="site-logo">
+    <footer className="lp-footer">
+      <div className="lp-footer-inner">
+        <div className="lp-footer-brand">
+          <Link to="/" className="lp-logo lp-logo-lg">
             SOLD<span>.</span>
-          </div>
+          </Link>
           <p>Fiyatları ömrüne çevir. Az tüket, çok yaşa.</p>
         </div>
 
-        <div className="footer-cols">
+        <div className="lp-footer-cols">
           <div>
             <h4>Ürün</h4>
-            <a href="#nasil">Nasıl çalışır</a>
-            <a href="#defter">Zaman defteri</a>
-            <a href="#fiyat">Fiyat</a>
+            <a href={anchor('akis')}>Akış</a>
+            <a href={anchor('defter')}>Defter</a>
+            <a href={anchor('fiyat')}>Fiyat</a>
           </div>
           <div>
             <h4>Hesap</h4>
@@ -26,14 +29,14 @@ export function SiteFooter() {
           </div>
           <div>
             <h4>Destek</h4>
-            <a href="#sss">SSS</a>
+            <a href={anchor('sss')}>SSS</a>
             <a href="mailto:destek@sold.app">destek@sold.app</a>
             <a href="#">Gizlilik</a>
           </div>
         </div>
       </div>
 
-      <div className="footer-bottom">
+      <div className="lp-footer-bottom">
         <span>© 2026 SOLD. Tüm hakları saklıdır.</span>
         <span>İstanbul'da yapıldı.</span>
       </div>

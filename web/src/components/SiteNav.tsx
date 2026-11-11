@@ -1,46 +1,51 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
 
 export function SiteNav() {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
 
   const close = () => setOpen(false);
+  const anchor = (id: string) => (pathname === '/' ? `#${id}` : `/#${id}`);
 
   return (
-    <header className="site-nav">
-      <div className="site-nav-inner">
-        <Link to="/" className="site-logo" onClick={close}>
+    <header className="lp-nav">
+      <div className="lp-nav-inner">
+        <Link to="/" className="lp-logo" onClick={close}>
           SOLD<span>.</span>
         </Link>
 
-        <nav className={open ? 'site-links open' : 'site-links'}>
-          <a href="#nasil" onClick={close}>
-            Nasıl çalışır
+        <nav className={open ? 'lp-links open' : 'lp-links'}>
+          <a href={anchor('akis')} onClick={close}>
+            Akış
           </a>
-          <a href="#defter" onClick={close}>
-            Zaman defteri
+          <a href={anchor('defter')} onClick={close}>
+            Defter
           </a>
-          <a href="#fiyat" onClick={close}>
+          <a href={anchor('uygulama')} onClick={close}>
+            Uygulama
+          </a>
+          <a href={anchor('fiyat')} onClick={close}>
             Fiyat
           </a>
-          <a href="#sss" onClick={close}>
+          <a href={anchor('sss')} onClick={close}>
             SSS
           </a>
         </nav>
 
-        <div className="site-actions">
+        <div className="lp-nav-actions">
           {user ? (
-            <Link to="/panel" className="btn btn-primary btn-sm">
+            <Link to="/panel" className="lp-btn lp-btn-solid lp-btn-sm">
               Panele git
             </Link>
           ) : (
             <>
-              <Link to="/giris" className="btn btn-ghost btn-sm">
-                Giriş yap
+              <Link to="/giris" className="lp-btn lp-btn-line lp-btn-sm">
+                Giriş
               </Link>
-              <Link to="/kayit" className="btn btn-primary btn-sm">
+              <Link to="/kayit" className="lp-btn lp-btn-solid lp-btn-sm">
                 Başla
               </Link>
             </>
@@ -49,8 +54,9 @@ export function SiteNav() {
 
         <button
           type="button"
-          className="nav-burger"
+          className="lp-burger"
           aria-label="Menüyü aç"
+          aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}
         >
           <span />
